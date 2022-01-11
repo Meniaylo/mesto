@@ -1,0 +1,15 @@
+.profile__edit-btn {
+  grid-row: 1;
+  grid-column: 2;
+  align-self: end;
+  width: 24px;
+  height: 24px;
+  background-color: #000;
+  background-image: url(../../../images/Edit-pen.svg);
+  background-size: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+  border: 1px solid #fff;
+  margin-bottom: 8px;
+}

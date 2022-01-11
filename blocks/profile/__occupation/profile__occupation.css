@@ -1,0 +1,10 @@
+.profile__occupation {
+  grid-column: 1/3;
+  align-self: start;
+  margin: 0;
+  font-size: 18px;
+  line-height: 21.78px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
