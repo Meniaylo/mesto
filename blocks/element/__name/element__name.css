@@ -6,5 +6,18 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 205px;
+}
+
+@media screen and (max-width: 1023px) {
+  .element__name {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (max-width: 955px) {
+  .element__name {
+    font-size: 24px;
+    line-height: 24px;
+  }
 }
