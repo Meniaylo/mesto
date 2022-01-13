@@ -13,3 +13,13 @@
   box-sizing: border-box;
   cursor: pointer;
 }
+
+@media screen and (max-width: 720px) {
+  .popup__exit-btn {
+    width: 20px;
+    height: 20px;
+    top: -36px;
+    right: 0;
+    background-size: 100%;
+  }
+}
