@@ -1,0 +1,15 @@
+.popup__exit-btn {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  border: none;
+  width: 32px;
+  height: 32px;
+  background: none;
+  background-image: url(../../../images/Close-btn.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}

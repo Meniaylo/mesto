@@ -10,7 +10,7 @@
 
 <body class="root">
   <header class="header">
-    <a class="header__logo link" href=#>
+    <a class="header__logo" href=#>
       <img class="header__logo-img" src="images/Logo.svg" alt="Логотип">
     </a>
   </header>
@@ -96,6 +96,18 @@
   <footer class="footer">
     <h2 class="footer__author">&copy;&nbsp;2022 Mesto Russia</h2>
   </footer>
+
+  <section class="popup popup_active">
+    <div class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
+      <form class="form" name="profileCtrl">
+        <input class="form__input form__input-name" type="text" name="inputName" placeholder="Жак-Ив Кусто">
+        <input class="form__input form__input-occupation" type="text" name="inputOccupation" placeholder="Исследователь океана">
+        <button class="form__submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
   <!--Подключить файл скрипта перед закрывающим тегом боди!-->
 </body>
 </html>

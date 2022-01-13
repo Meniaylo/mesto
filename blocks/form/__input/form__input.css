@@ -1,0 +1,19 @@
+.form__input {
+  display: block;
+  height: 27px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #000;
+  text-align: start;
+  margin-bottom: 30px;
+}
+
+.form__input:last-of-type {
+  margin-bottom: 48px;
+}
+
+.form__input::placeholder {
+    font-size: 14px;
+    line-height: 17px;
+    color: #000;
+}
