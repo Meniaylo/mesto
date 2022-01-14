@@ -20,6 +20,6 @@
   .profile__occupation {
     font-size: 14px;
     line-height: 14px;
-    grid-column: 1;
+    max-width: 100%;
   }
 }

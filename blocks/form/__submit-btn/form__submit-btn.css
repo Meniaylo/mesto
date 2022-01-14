@@ -1,4 +1,4 @@
-.form__submit {
+.form__submit-btn {
   width: 100%;
   height: 50px;
   background: #000;
@@ -13,12 +13,12 @@
   transition: 0.1s ease-in-out;
 }
 
-.form__submit:hover {
+.form__submit-btn:hover {
   opacity: .8;
 }
 
 @media screen and (max-width: 720px) {
-  .form__submit {
+  .form__submit-btn {
     height: 46px;
     font-size: 14px;
     line-height: 17px;
