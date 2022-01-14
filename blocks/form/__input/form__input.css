@@ -6,17 +6,18 @@
   border-bottom: 1px solid #000;
   box-sizing: border-box;
   margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 17px;
+  padding-bottom: 12px;
 }
 
 .form__input:last-of-type {
   margin-bottom: 48px;
 }
 
-.form__input::placeholder {
-    font-size: 14px;
-    line-height: 17px;
-    color: #000;
-    text-align: start;
+.form__input:focus {
+  outline: none;
+  border-bottom: 1px solid rgb(63, 63, 240);
 }
 
 @media screen and (max-width: 720px) {
