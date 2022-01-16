@@ -11,18 +11,18 @@
 <body class="root">
   <header class="header">
     <a class="header__logo" href=#>
-      <img class="header__logo-img" src="images/Logo.svg" alt="Логотип">
+      <img class="header__logo-img" src="images/logo.svg" alt="Логотип">
     </a>
   </header>
 
   <main class="content">
     <section class="profile">
       <div class="profile__card">
-        <img class="profile__avatar" src="images/Cousteau.jpg" alt="Аватар">
+        <img class="profile__avatar" src="images/cousteau.jpg" alt="Аватар">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__occupation">Исследователь океана</p>
-          <button class="profile__edit-btn link" aria-label="Вывести"></button>
+          <button class="profile__edit-btn link" type="button" aria-label="Вывести"></button>
         </div>
       </div>
       <button class="profile__add-btn link" type="button" aria-label="Добавить"></button>
@@ -31,68 +31,68 @@
     <section class="elements" aria-label="Фотографии">
       <article class="element">
         <div class="element__pic-wrapper">
-          <img class="element__pic" src="images/El_Vologda.jpeg" alt="Вологда">
+          <img class="element__pic" src="images/el-vologda.jpeg" alt="Вологда">
         </div>
         <div class="element__info">
           <h2 class="element__name">Вологда</h2>
-          <img class="element__like" src="images/Like.svg" alt="Лайк">
+          <button class="element__like-btn" type="button" aria-label="Лайк">
         </div>
       </article>
 
       <article class="element">
         <div class="element__pic-wrapper">
-          <img class="element__pic" src="images/El_Torzhok.jpeg" alt="Торжок">
+          <img class="element__pic" src="images/el-torzhok.jpeg" alt="Торжок">
         </div>
         <div class="element__info">
           <h2 class="element__name">Торжок</h2>
-          <img class="element__like" src="images/Like.svg" alt="Лайк">
+          <button class="element__like-btn" type="button" aria-label="Лайк">
         </div>
       </article>
 
       <article class="element">
         <div class="element__pic-wrapper">
-          <img class="element__pic" src="images/El_Kostomarovo.jpeg" alt="Костомарово">
+          <img class="element__pic" src="images/el-kostomarovo.jpeg" alt="Костомарово">
         </div>
         <div class="element__info">
           <h2 class="element__name">Костомарово</h2>
-          <img class="element__like" src="images/Like.svg" alt="Лайк">
+          <button class="element__like-btn" type="button" aria-label="Лайк">
         </div>
       </article>
 
       <article class="element">
         <div class="element__pic-wrapper">
-          <img class="element__pic" src="images/El_Elista.jpeg" alt="Элиста">
+          <img class="element__pic" src="images/el-elista.jpeg" alt="Элиста">
         </div>
         <div class="element__info">
           <h2 class="element__name">Элиста</h2>
-          <img class="element__like" src="images/Like.svg" alt="Лайк">
+          <button class="element__like-btn" type="button" aria-label="Лайк">
         </div>
       </article>
 
       <article class="element">
         <div class="element__pic-wrapper">
-          <img class="element__pic" src="images/El_Vytegra.jpeg" alt="Вытегра">
+          <img class="element__pic" src="images/el-vytegra.jpeg" alt="Вытегра">
         </div>
         <div class="element__info">
           <h2 class="element__name">Вытегра</h2>
-          <img class="element__like" src="images/Like.svg" alt="Лайк">
+          <button class="element__like-btn" type="button" aria-label="Лайк">
         </div>
       </article>
       
       <article class="element">
         <div class="element__pic-wrapper">
-          <img class="element__pic" src="images/El_Talashkino.jpeg" alt="Талашкино-Флёново">
+          <img class="element__pic" src="images/el-talashkino.jpeg" alt="Талашкино-Флёново">
         </div>
         <div class="element__info">
           <h2 class="element__name">Талашкино-Флёново</h2>
-          <img class="element__like" src="images/Like.svg" alt="Лайк">
+          <button class="element__like-btn" type="button" aria-label="Лайк">
         </div>
       </article>
     </section>
   </main>
 
   <footer class="footer">
-    <h2 class="footer__author">&copy;&nbsp;2022 Mesto Russia</h2>
+    <p class="footer__author">&copy;&nbsp;2022 Mesto Russia</p>
   </footer>
 
   <section class="popup">
@@ -100,8 +100,8 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
       <form class="form" name="profileCtrl">
-        <input class="form__input form__input-name" type="text" name="inputName" value="Жак-Ив Кусто">
-        <input class="form__input form__input-occupation" type="text" name="inputOccupation" value="Исследователь океана">
+        <input class="form__input form__input_subj_name" type="text" name="inputName" value="1">
+        <input class="form__input form__input_subj_occupation" type="text" name="inputOccupation" value="2">
         <button class="form__submit-btn" type="submit">Сохранить</button>
       </form>
     </div>

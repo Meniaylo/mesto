@@ -5,14 +5,14 @@
 
 @media screen and (max-width: 1023px) {
   .header__logo-img {
-    width: 113.6px;
-    height: 26.4px;
+    width: 114x;
+    height: 26px;
   }
 }
 
 @media screen and (max-width: 720px) {
   .header__logo-img {
-    width: 103.74px;
-    height: 24.4px;
+    width: 104px;
+    height: 24px;
   }
 }

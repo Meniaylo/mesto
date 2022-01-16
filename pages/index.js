@@ -3,7 +3,8 @@ let popup = document.querySelector('.popup');
 let popupExitBtn = popup.querySelector('.popup__exit-btn');
 let profileName = document.querySelector('.profile__name');
 let profileOccupation = document.querySelector('.profile__occupation');
-let profileInputs = popup.querySelectorAll('input');
+let profileInputName = popup.querySelector('.form__input_subj_name');
+let profileInputOccupation = popup.querySelector('.form__input_subj_occupation');
 let formElement = document.querySelector('.form');
 
 
@@ -16,14 +17,14 @@ function hidePopup() {
 }
 
 function fillInput() {
-  profileInputs[0].value = profileName.textContent;
-  profileInputs[1].value = profileOccupation.textContent;
+  profileInputName.value = profileName.textContent;
+  profileInputOccupation.value = profileOccupation.textContent;
 }
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  profileName.textContent = profileInputs[0].value;
-  profileOccupation.textContent = profileInputs[1].value;
+  profileName.textContent = profileInputName.value;
+  profileOccupation.textContent = profileInputOccupation.value;
 }
 
 editBtn.addEventListener('click', showPopup);
