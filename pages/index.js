@@ -8,12 +8,8 @@ let profileInputOccupation = popup.querySelector('.form__input_subj_occupation')
 let formElement = document.querySelector('.form');
 
 
-function showPopup() {
-  popup.classList.add('popup_active');
-}
-
-function hidePopup() {
-  popup.classList.remove('popup_active');
+function popupOnOff() {
+  popup.classList.toggle('popup_active');
 }
 
 function fillInput() {
@@ -27,8 +23,8 @@ function formSubmitHandler(evt) {
   profileOccupation.textContent = profileInputOccupation.value;
 }
 
-editBtn.addEventListener('click', showPopup);
+editBtn.addEventListener('click', popupOnOff);
 editBtn.addEventListener('click', fillInput);
-popupExitBtn.addEventListener('click', hidePopup);
+popupExitBtn.addEventListener('click', popupOnOff);
 formElement.addEventListener('submit', formSubmitHandler);
-formElement.addEventListener('submit', hidePopup);
+formElement.addEventListener('submit', popupOnOff);
