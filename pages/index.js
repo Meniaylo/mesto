@@ -7,13 +7,7 @@ const profileInputName = profilePopup.querySelector('.form__input_subj_name');
 const profileInputOccupation = profilePopup.querySelector('.form__input_subj_occupation');
 const profileFormElement = profilePopup.querySelector('.form');
 
-const addBtn = document.querySelector('.profile__add-btn');
-const elementsPopup = document.querySelector('.elements__popup');
-const elementsPopupExitBtn = elementsPopup.querySelector('.popup__exit-btn');
-const elementsFormElement = elementsPopup.querySelector('.form');
-
-
-function profilePopupOnOff() {
+function toggleProfilePopup() {
   profilePopup.classList.toggle('popup_active');
 }
 
@@ -22,29 +16,34 @@ function fillInput() {
   profileInputOccupation.value = profileOccupation.textContent;
 }
 
-function profileFormSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileOccupation.textContent = profileInputOccupation.value;
 }
 
-editBtn.addEventListener('click', profilePopupOnOff);
+editBtn.addEventListener('click', toggleProfilePopup);
 editBtn.addEventListener('click', fillInput);
-profilePopupExitBtn.addEventListener('click', profilePopupOnOff);
-profileFormElement.addEventListener('submit', profileFormSubmitHandler);
-profileFormElement.addEventListener('submit', profilePopupOnOff);
+profilePopupExitBtn.addEventListener('click', toggleProfilePopup);
+profileFormElement.addEventListener('submit', handleProfileFormSubmit);
+profileFormElement.addEventListener('submit', toggleProfilePopup);
 
 
-function elementsPopupOnOff() {
+const addBtn = document.querySelector('.profile__add-btn');
+const elementsPopup = document.querySelector('.elements__popup');
+const elementsPopupExitBtn = elementsPopup.querySelector('.popup__exit-btn');
+const elementsFormElement = elementsPopup.querySelector('.form');
+
+function toggleElementsPopup() {
   elementsPopup.classList.toggle('popup_active');
 }
 
-function elementsFormSubmitHandler(evt) {
+function handleElementsFormSubmit(evt) {
   evt.preventDefault();
   
 }
 
-addBtn.addEventListener('click', elementsPopupOnOff);
-elementsPopupExitBtn.addEventListener('click', elementsPopupOnOff);
-elementsFormElement.addEventListener('submit', elementsFormSubmitHandler);
-elementsFormElement.addEventListener('submit', elementsPopupOnOff);
+addBtn.addEventListener('click', toggleElementsPopup);
+elementsPopupExitBtn.addEventListener('click', toggleElementsPopup);
+elementsFormElement.addEventListener('submit', handleElementsFormSubmit);
+elementsFormElement.addEventListener('submit', toggleElementsPopup);
