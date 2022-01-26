@@ -5,19 +5,16 @@ const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
 const profileInputName = profilePopup.querySelector('.form__input_subj_name');
 const profileInputOccupation = profilePopup.querySelector('.form__input_subj_occupation');
-const formElement = document.querySelector('.form');
+const profileFormElement = profilePopup.querySelector('.form');
 
 const addBtn = document.querySelector('.profile__add-btn');
 const elementsPopup = document.querySelector('.elements__popup');
 const elementsPopupExitBtn = elementsPopup.querySelector('.popup__exit-btn');
+const elementsFormElement = elementsPopup.querySelector('.form');
 
 
 function profilePopupOnOff() {
   profilePopup.classList.toggle('popup_active');
-}
-
-function elementsPopupOnOff() {
-  elementsPopup.classList.toggle('popup_active');
 }
 
 function fillInput() {
@@ -25,7 +22,7 @@ function fillInput() {
   profileInputOccupation.value = profileOccupation.textContent;
 }
 
-function formSubmitHandler(evt) {
+function profileFormSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileOccupation.textContent = profileInputOccupation.value;
@@ -34,8 +31,20 @@ function formSubmitHandler(evt) {
 editBtn.addEventListener('click', profilePopupOnOff);
 editBtn.addEventListener('click', fillInput);
 profilePopupExitBtn.addEventListener('click', profilePopupOnOff);
-formElement.addEventListener('submit', formSubmitHandler);
-formElement.addEventListener('submit', profilePopupOnOff);
+profileFormElement.addEventListener('submit', profileFormSubmitHandler);
+profileFormElement.addEventListener('submit', profilePopupOnOff);
+
+
+function elementsPopupOnOff() {
+  elementsPopup.classList.toggle('popup_active');
+}
+
+function elementsFormSubmitHandler(evt) {
+  evt.preventDefault();
+  
+}
 
 addBtn.addEventListener('click', elementsPopupOnOff);
 elementsPopupExitBtn.addEventListener('click', elementsPopupOnOff);
+elementsFormElement.addEventListener('submit', elementsFormSubmitHandler);
+elementsFormElement.addEventListener('submit', elementsPopupOnOff);
