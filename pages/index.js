@@ -1,6 +1,6 @@
 const editBtn = document.querySelector('.profile__edit-btn');
 const profilePopup = document.querySelector('.profile__popup');
-const popupExitBtn = profilePopup.querySelector('.popup__exit-btn');
+const profilePopupExitBtn = profilePopup.querySelector('.popup__exit-btn');
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
 const profileInputName = profilePopup.querySelector('.form__input_subj_name');
@@ -9,10 +9,15 @@ const formElement = document.querySelector('.form');
 
 const addBtn = document.querySelector('.profile__add-btn');
 const elementsPopup = document.querySelector('.elements__popup');
+const elementsPopupExitBtn = elementsPopup.querySelector('.popup__exit-btn');
 
 
-function popupOnOff() {
-  popupExitBtn.parentElement.parentElement.classList.toggle('popup_active');
+function profilePopupOnOff() {
+  profilePopup.classList.toggle('popup_active');
+}
+
+function elementsPopupOnOff() {
+  elementsPopup.classList.toggle('popup_active');
 }
 
 function fillInput() {
@@ -26,8 +31,11 @@ function formSubmitHandler(evt) {
   profileOccupation.textContent = profileInputOccupation.value;
 }
 
-editBtn.addEventListener('click', popupOnOff);
+editBtn.addEventListener('click', profilePopupOnOff);
 editBtn.addEventListener('click', fillInput);
-popupExitBtn.addEventListener('click', popupOnOff);
+profilePopupExitBtn.addEventListener('click', profilePopupOnOff);
 formElement.addEventListener('submit', formSubmitHandler);
-formElement.addEventListener('submit', popupOnOff);
+formElement.addEventListener('submit', profilePopupOnOff);
+
+addBtn.addEventListener('click', elementsPopupOnOff);
+elementsPopupExitBtn.addEventListener('click', elementsPopupOnOff);
