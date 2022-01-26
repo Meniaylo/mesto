@@ -101,7 +101,7 @@
     <p class="footer__author">&copy;&nbsp;2022 Mesto Russia</p>
   </footer>
 
-  <section class="popup">
+  <section class="popup profile__popup">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
@@ -112,6 +112,19 @@
       </form>
     </div>
   </section>
+
+  <section class="popup elements__popup">
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
+      <form class="form" name="elementsCtrl">
+        <input class="form__input form__input_subj_elementTitle" type="text" name="inputElementTitle" value="1">
+        <input class="form__input form__input_subj_elementLink" type="url" name="inputElementLink" value="2">
+        <button class="form__submit-btn" type="submit">Создать</button>
+      </form>
+    </div>
+  </section>
+
   <script src="pages/index.js"></script>
 </body>
 </html>

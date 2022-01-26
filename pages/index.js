@@ -1,15 +1,18 @@
-let editBtn = document.querySelector('.profile__edit-btn');
-let popup = document.querySelector('.popup');
-let popupExitBtn = popup.querySelector('.popup__exit-btn');
-let profileName = document.querySelector('.profile__name');
-let profileOccupation = document.querySelector('.profile__occupation');
-let profileInputName = popup.querySelector('.form__input_subj_name');
-let profileInputOccupation = popup.querySelector('.form__input_subj_occupation');
-let formElement = document.querySelector('.form');
+const editBtn = document.querySelector('.profile__edit-btn');
+const profilePopup = document.querySelector('.profile__popup');
+const popupExitBtn = profilePopup.querySelector('.popup__exit-btn');
+const profileName = document.querySelector('.profile__name');
+const profileOccupation = document.querySelector('.profile__occupation');
+const profileInputName = profilePopup.querySelector('.form__input_subj_name');
+const profileInputOccupation = profilePopup.querySelector('.form__input_subj_occupation');
+const formElement = document.querySelector('.form');
+
+const addBtn = document.querySelector('.profile__add-btn');
+const elementsPopup = document.querySelector('.elements__popup');
 
 
 function popupOnOff() {
-  popup.classList.toggle('popup_active');
+  popupExitBtn.parentElement.parentElement.classList.toggle('popup_active');
 }
 
 function fillInput() {
