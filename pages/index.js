@@ -49,14 +49,6 @@ const profileInputName = profilePopup.querySelector('[name="inputName"]');
 const profileInputOccupation = profilePopup.querySelector('[name="inputOccupation"]');
 const profileFormElement = profilePopup.querySelector('.form');
 
-const fillCard = (item) => {
-  const element = elementsTemplate.cloneNode(true);
-  element.querySelector('.element__name').textContent = item.name;
-  element.querySelector('.element__pic').src = item.link;
-  element.querySelector('.element__pic').alt = item.description;
-  return element;
-};
-
 const handleLikeBtn = (evt) => {
   const eventTarget = evt.target;
   eventTarget.classList.toggle('element__like-btn_active');
@@ -66,12 +58,20 @@ const handleDeleteBtn = (evt) => {
   evt.target.closest('.element').remove();
 }
 
-const createCard = (card, wrap) => {
-  const newCard = fillCard(card);
-  const likeBtn = newCard.querySelector('.element__like-btn');
-  const deleteBtn = newCard.querySelector('.element__remove-btn');
+const fillCard = (item) => {
+  const element = elementsTemplate.cloneNode(true);
+  element.querySelector('.element__name').textContent = item.name;
+  element.querySelector('.element__pic').src = item.link;
+  element.querySelector('.element__pic').alt = item.description;
+  const likeBtn = element.querySelector('.element__like-btn');
+  const deleteBtn = element.querySelector('.element__remove-btn');
   likeBtn.addEventListener('click', handleLikeBtn);
   deleteBtn.addEventListener('click', handleDeleteBtn);
+  return element;
+};
+
+const createCard = (card, wrap) => {
+  const newCard = fillCard(card);
   wrap.prepend(newCard);
 };
 
