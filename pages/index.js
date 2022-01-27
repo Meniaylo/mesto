@@ -63,21 +63,20 @@ const handleLikeBtn = (evt) => {
 };
 
 const handleDeleteBtn = (evt) => {
-  const elementToBeRemoved = evt.target.parentElement.parentElement;
-  elementToBeRemoved.remove();
+  evt.target.closest('.element').remove();
 }
 
-const createCard = (card) => {
+const createCard = (card, wrap) => {
   const newCard = fillCard(card);
   const likeBtn = newCard.querySelector('.element__like-btn');
   const deleteBtn = newCard.querySelector('.element__remove-btn');
   likeBtn.addEventListener('click', handleLikeBtn);
   deleteBtn.addEventListener('click', handleDeleteBtn);
-  elementsSection.prepend(newCard);
+  wrap.prepend(newCard);
 };
 
 initialCards.forEach((item) => {
-  createCard(item);
+  createCard(item, elementsSection);
 });
 
 function handleElementsFormSubmit(evt) {
@@ -86,7 +85,7 @@ function handleElementsFormSubmit(evt) {
     name: elementsFormInputTitle.value,
     link: elementsFormInputLink.value
   };
-  createCard(newElement);
+  createCard(newElement, elementsSection);
 };
 
 function toggleProfilePopup() {
