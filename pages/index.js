@@ -1,23 +1,8 @@
 const initialCards = [
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    description: 'Побережье Байкала зимой'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-    description: 'Железная дорога среди леса'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    description: 'Пейзаж с вулканом'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    description: 'Спальные районы с воздуха'
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+    description: 'Солнечная долина Архыза'
   },
   {
     name: 'Челябинская область',
@@ -25,9 +10,24 @@ const initialCards = [
     description: 'Зимняя река'
   },
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    description: 'Солнечная долина Архыза'
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+    description: 'Спальные районы с воздуха'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+    description: 'Пейзаж с вулканом'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+    description: 'Железная дорога среди леса'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+    description: 'Побережье Байкала зимой'
   }
 ];
 
@@ -70,13 +70,17 @@ const fillCard = (item) => {
   return element;
 };
 
-const createCard = (card, wrap) => {
+const createCard = (card, wrap, isAppend) => {
   const newCard = fillCard(card);
-  wrap.prepend(newCard);
+  if (isAppend) {
+    wrap.append(newCard);
+  } else {
+    wrap.prepend(newCard);
+  }
 };
 
 initialCards.forEach((item) => {
-  createCard(item, elementsSection);
+  createCard(item, elementsSection, true);
 });
 
 function handleElementsFormSubmit(evt) {
@@ -85,7 +89,7 @@ function handleElementsFormSubmit(evt) {
     name: elementsFormInputTitle.value,
     link: elementsFormInputLink.value
   };
-  createCard(newElement, elementsSection);
+  createCard(newElement, elementsSection, false);
 };
 
 function toggleProfilePopup() {
