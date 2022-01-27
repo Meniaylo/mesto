@@ -1,23 +1,8 @@
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    description: 'Солнечная долина Архыза'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-    description: 'Зимняя река'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    description: 'Спальные районы с воздуха'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    description: 'Пейзаж с вулканом'
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+    description: 'Побережье Байкала зимой'
   },
   {
     name: 'Холмогорский район',
@@ -25,9 +10,24 @@ const initialCards = [
     description: 'Железная дорога среди леса'
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    description: 'Побережье Байкала зимой'
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+    description: 'Пейзаж с вулканом'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+    description: 'Спальные районы с воздуха'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+    description: 'Зимняя река'
+  },
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+    description: 'Солнечная долина Архыза'
   }
 ];
 
@@ -57,37 +57,45 @@ const fillCard = (item) => {
   element.querySelector('.element__pic').src = item.link;
   element.querySelector('.element__pic').alt = item.description;
   return element;
-}
+};
+
+const createCard = (card) => {
+  const newCard = fillCard(card);
+  elementsSection.prepend(newCard);
+};
 
 initialCards.forEach((item) => {
-  const newCard = fillCard(item);
-  elementsSection.append(newCard);
+  createCard(item);
 });
+
+function handleElementsFormSubmit(evt) {
+  evt.preventDefault();
+  const newElement = {
+    name: elementsFormInputTitle.value,
+    link: elementsFormInputLink.value
+  };
+  createCard(newElement);
+};
 
 function toggleProfilePopup() {
   profilePopup.classList.toggle('popup_active');
-}
+};
 
 function fillInput() {
   profileInputName.value = profileName.textContent;
   profileInputOccupation.value = profileOccupation.textContent;
-}
+};
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileOccupation.textContent = profileInputOccupation.value;
-}
+};
 
 function toggleElementsPopup() {
   elementsPopup.classList.toggle('popup_active');
-}
+};
 
-function handleElementsFormSubmit(evt) {
-  evt.preventDefault();
-
-  
-}
 
 editBtn.addEventListener('click', toggleProfilePopup);
 editBtn.addEventListener('click', fillInput);
