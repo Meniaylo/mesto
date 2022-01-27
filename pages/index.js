@@ -33,14 +33,12 @@ const initialCards = [
 
 const elementsSection = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('#elements-template').content.querySelector('.element');
-
 const addBtn = document.querySelector('.profile__add-btn');
 const elementsPopup = document.querySelector('.elements__popup');
 const elementsPopupExitBtn = elementsPopup.querySelector('.popup__exit-btn');
 const elementsFormElement = elementsPopup.querySelector('.form');
 const elementsFormInputTitle = elementsPopup.querySelector('[name="inputElementTitle"]');
 const elementsFormInputLink = elementsPopup.querySelector('[name="inputElementLink"]');
-
 
 const editBtn = document.querySelector('.profile__edit-btn');
 const profilePopup = document.querySelector('.profile__popup');
@@ -59,8 +57,22 @@ const fillCard = (item) => {
   return element;
 };
 
+const handleLikeBtn = (evt) => {
+  const eventTarget = evt.target;
+  eventTarget.classList.toggle('element__like-btn_active');
+};
+
+const handleDeleteBtn = (evt) => {
+  const elementToBeRemoved = evt.target.parentElement.parentElement;
+  elementToBeRemoved.remove();
+}
+
 const createCard = (card) => {
   const newCard = fillCard(card);
+  const likeBtn = newCard.querySelector('.element__like-btn');
+  const deleteBtn = newCard.querySelector('.element__remove-btn');
+  likeBtn.addEventListener('click', handleLikeBtn);
+  deleteBtn.addEventListener('click', handleDeleteBtn);
   elementsSection.prepend(newCard);
 };
 
@@ -95,7 +107,6 @@ function handleProfileFormSubmit(evt) {
 function toggleElementsPopup() {
   elementsPopup.classList.toggle('popup_active');
 };
-
 
 editBtn.addEventListener('click', toggleProfilePopup);
 editBtn.addEventListener('click', fillInput);
