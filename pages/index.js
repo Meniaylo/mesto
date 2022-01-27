@@ -51,13 +51,17 @@ const profileInputName = profilePopup.querySelector('[name="inputName"]');
 const profileInputOccupation = profilePopup.querySelector('[name="inputOccupation"]');
 const profileFormElement = profilePopup.querySelector('.form');
 
-
-initialCards.forEach((item) => {
+const fillCard = (item) => {
   const element = elementsTemplate.cloneNode(true);
   element.querySelector('.element__name').textContent = item.name;
   element.querySelector('.element__pic').src = item.link;
   element.querySelector('.element__pic').alt = item.description;
-  elementsSection.append(element);
+  return element;
+}
+
+initialCards.forEach((item) => {
+  const newCard = fillCard(item);
+  elementsSection.append(newCard);
 });
 
 function toggleProfilePopup() {
