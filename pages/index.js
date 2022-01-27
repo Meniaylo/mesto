@@ -57,7 +57,7 @@ initialCards.forEach((item) => {
   element.querySelector('.element__name').textContent = item.name;
   element.querySelector('.element__pic').src = item.link;
   element.querySelector('.element__pic').alt = item.description;
-  elementsSection.prepend(element);
+  elementsSection.append(element);
 });
 
 function toggleProfilePopup() {
