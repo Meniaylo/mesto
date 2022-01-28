@@ -36,7 +36,7 @@
     <p class="footer__author">&copy;&nbsp;2022 Mesto Russia</p>
   </footer>
 
-  <section class="popup profile__popup">
+  <section class="popup" id="profile-popup">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
@@ -48,7 +48,7 @@
     </div>
   </section>
 
-  <section class="popup elements__popup">
+  <section class="popup" id="elements-popup">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
@@ -57,6 +57,14 @@
         <input class="form__input" type="url" name="inputElementLink" placeholder="Ссылка на картинку">
         <button class="form__submit-btn" type="submit">Создать</button>
       </form>
+    </div>
+  </section>
+
+  <section class="popup img-popup" id="img-popup">
+    <div class="img-popup__container">
+      <img class="img-popup__img" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg" alt="2">
+      <h2 class="img-popup__title">Название места</h2>
+      <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
     </div>
   </section>
 

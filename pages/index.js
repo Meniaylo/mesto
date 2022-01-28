@@ -34,14 +34,14 @@ const initialCards = [
 const elementsSection = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('#elements-template').content.querySelector('.element');
 const addBtn = document.querySelector('.profile__add-btn');
-const elementsPopup = document.querySelector('.elements__popup');
+const elementsPopup = document.querySelector('#elements-popup');
 const elementsPopupExitBtn = elementsPopup.querySelector('.popup__exit-btn');
 const elementsFormElement = elementsPopup.querySelector('.form');
 const elementsFormInputTitle = elementsPopup.querySelector('[name="inputElementTitle"]');
 const elementsFormInputLink = elementsPopup.querySelector('[name="inputElementLink"]');
 
 const editBtn = document.querySelector('.profile__edit-btn');
-const profilePopup = document.querySelector('.profile__popup');
+const profilePopup = document.querySelector('#profile-popup');
 const profilePopupExitBtn = profilePopup.querySelector('.popup__exit-btn');
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
@@ -87,13 +87,10 @@ function handleElementsFormSubmit(evt) {
   evt.preventDefault();
   const newElement = {
     name: elementsFormInputTitle.value,
-    link: elementsFormInputLink.value
+    link: elementsFormInputLink.value,
+    description: `Вид на ${elementsFormInputTitle.value}`
   };
   createCard(newElement, elementsSection, false);
-};
-
-function toggleProfilePopup() {
-  profilePopup.classList.toggle('popup_active');
 };
 
 function fillInput() {
@@ -107,16 +104,16 @@ function handleProfileFormSubmit(evt) {
   profileOccupation.textContent = profileInputOccupation.value;
 };
 
-function toggleElementsPopup() {
-  elementsPopup.classList.toggle('popup_active');
+function togglePopup(popup) {
+  popup.classList.toggle('popup_active');
 };
 
-editBtn.addEventListener('click', toggleProfilePopup);
+editBtn.addEventListener('click', () => togglePopup(profilePopup));
 editBtn.addEventListener('click', fillInput);
-profilePopupExitBtn.addEventListener('click', toggleProfilePopup);
+profilePopupExitBtn.addEventListener('click', () => togglePopup(profilePopup));
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
-profileFormElement.addEventListener('submit', toggleProfilePopup);
-addBtn.addEventListener('click', toggleElementsPopup);
-elementsPopupExitBtn.addEventListener('click', toggleElementsPopup);
+profileFormElement.addEventListener('submit', () => togglePopup(profilePopup));
+addBtn.addEventListener('click', () => togglePopup(elementsPopup));
+elementsPopupExitBtn.addEventListener('click', () => togglePopup(elementsPopup));
 elementsFormElement.addEventListener('submit', handleElementsFormSubmit);
-elementsFormElement.addEventListener('submit', toggleElementsPopup);
+elementsFormElement.addEventListener('submit', () => togglePopup(elementsPopup));
