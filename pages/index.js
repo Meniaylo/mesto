@@ -71,12 +71,12 @@ const handleImgClick = (evt) => {
 
 const fillCard = (item) => {
   const element = elementsTemplate.cloneNode(true);
-  element.querySelector('.element__name').textContent = item.name;
-  element.querySelector('.element__pic').src = item.link;
-  element.querySelector('.element__pic').alt = item.description;
+  const elementPic = element.querySelector('.element__pic');
   const likeBtn = element.querySelector('.element__like-btn');
   const deleteBtn = element.querySelector('.element__remove-btn');
-  const elementPic = element.querySelector('.element__pic');
+  element.querySelector('.element__name').textContent = item.name;
+  elementPic.src = item.link;
+  elementPic.alt = item.description;
   likeBtn.addEventListener('click', handleLikeBtn);
   deleteBtn.addEventListener('click', handleDeleteBtn);
   elementPic.addEventListener('click', handleImgClick);
