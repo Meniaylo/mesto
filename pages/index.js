@@ -49,6 +49,9 @@ const profileInputName = profilePopup.querySelector('[name="inputName"]');
 const profileInputOccupation = profilePopup.querySelector('[name="inputOccupation"]');
 const profileFormElement = profilePopup.querySelector('.form');
 
+const imgPopup = document.querySelector('#img-popup');
+const imgPopupExitBtn = imgPopup.querySelector('.popup__exit-btn');
+
 const handleLikeBtn = (evt) => {
   const eventTarget = evt.target;
   eventTarget.classList.toggle('element__like-btn_active');
@@ -58,6 +61,14 @@ const handleDeleteBtn = (evt) => {
   evt.target.closest('.element').remove();
 }
 
+const handleImgClick = (evt) => {
+  const imageUrl = evt.target.src;
+  const element = evt.target.closest('.element');
+  imgPopup.querySelector('.popup__img').src = imageUrl;
+  imgPopup.querySelector('.popup__img-title').textContent = element.querySelector('.element__name').textContent;
+  togglePopup(imgPopup);
+};
+
 const fillCard = (item) => {
   const element = elementsTemplate.cloneNode(true);
   element.querySelector('.element__name').textContent = item.name;
@@ -65,8 +76,10 @@ const fillCard = (item) => {
   element.querySelector('.element__pic').alt = item.description;
   const likeBtn = element.querySelector('.element__like-btn');
   const deleteBtn = element.querySelector('.element__remove-btn');
+  const elementPic = element.querySelector('.element__pic');
   likeBtn.addEventListener('click', handleLikeBtn);
   deleteBtn.addEventListener('click', handleDeleteBtn);
+  elementPic.addEventListener('click', handleImgClick);
   return element;
 };
 
@@ -117,3 +130,4 @@ profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 addBtn.addEventListener('click', () => togglePopup(elementsPopup));
 elementsPopupExitBtn.addEventListener('click', () => togglePopup(elementsPopup));
 elementsFormElement.addEventListener('submit', handleElementsFormSubmit);
+imgPopupExitBtn.addEventListener('click', () => togglePopup(imgPopup));
