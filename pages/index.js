@@ -83,6 +83,10 @@ initialCards.forEach((item) => {
   createCard(item, elementsSection, true);
 });
 
+function togglePopup(popup) {
+  popup.classList.toggle('popup_active');
+};
+
 function handleElementsFormSubmit(evt) {
   evt.preventDefault();
   const newElement = {
@@ -91,29 +95,25 @@ function handleElementsFormSubmit(evt) {
     description: `Вид на ${elementsFormInputTitle.value}`
   };
   createCard(newElement, elementsSection, false);
+  togglePopup(elementsPopup);
 };
 
 function fillInput() {
   profileInputName.value = profileName.textContent;
   profileInputOccupation.value = profileOccupation.textContent;
+  togglePopup(profilePopup);
 };
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileOccupation.textContent = profileInputOccupation.value;
+  togglePopup(profilePopup);
 };
 
-function togglePopup(popup) {
-  popup.classList.toggle('popup_active');
-};
-
-editBtn.addEventListener('click', () => togglePopup(profilePopup));
 editBtn.addEventListener('click', fillInput);
 profilePopupExitBtn.addEventListener('click', () => togglePopup(profilePopup));
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
-profileFormElement.addEventListener('submit', () => togglePopup(profilePopup));
 addBtn.addEventListener('click', () => togglePopup(elementsPopup));
 elementsPopupExitBtn.addEventListener('click', () => togglePopup(elementsPopup));
 elementsFormElement.addEventListener('submit', handleElementsFormSubmit);
-elementsFormElement.addEventListener('submit', () => togglePopup(elementsPopup));
