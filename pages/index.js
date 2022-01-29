@@ -51,6 +51,8 @@ const profileFormElement = profilePopup.querySelector('.form');
 
 const imgPopup = document.querySelector('#img-popup');
 const imgPopupExitBtn = imgPopup.querySelector('.popup__exit-btn');
+const popupImage = imgPopup.querySelector('.popup__img');
+const popupImageTitle = imgPopup.querySelector('.popup__img-title');
 
 const handleLikeBtn = (evt) => {
   const eventTarget = evt.target;
@@ -64,8 +66,9 @@ const handleDeleteBtn = (evt) => {
 const handleImgClick = (evt) => {
   const imageUrl = evt.target.src;
   const element = evt.target.closest('.element');
-  imgPopup.querySelector('.popup__img').src = imageUrl;
+  popupImage.src = imageUrl;
   imgPopup.querySelector('.popup__img-title').textContent = element.querySelector('.element__name').textContent;
+
   togglePopup(imgPopup);
 };
 
