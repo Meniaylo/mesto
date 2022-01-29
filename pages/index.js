@@ -65,9 +65,11 @@ const handleDeleteBtn = (evt) => {
 
 const handleImgClick = (evt) => {
   const imageUrl = evt.target.src;
+  const imageAlt = evt.target.alt;
   const element = evt.target.closest('.element');
   popupImage.src = imageUrl;
-  imgPopup.querySelector('.popup__img-title').textContent = element.querySelector('.element__name').textContent;
+  popupImageTitle.textContent = element.querySelector('.element__name').textContent;
+  popupImage.alt = imageAlt;
 
   togglePopup(imgPopup);
 };
