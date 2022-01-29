@@ -133,10 +133,16 @@ function handleProfileFormSubmit(evt) {
   closePopup(profilePopup);
 };
 
+function handleAddBtnClick() {
+  elementsFormInputTitle.value = '';
+  elementsFormInputLink.value = '';
+  openPopup(elementsPopup);
+};
+
 editBtn.addEventListener('click', fillInput);
 profilePopupExitBtn.addEventListener('click', () => closePopup(profilePopup));
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
-addBtn.addEventListener('click', () => openPopup(elementsPopup));
+addBtn.addEventListener('click', handleAddBtnClick);
 elementsPopupExitBtn.addEventListener('click', () => closePopup(elementsPopup));
 elementsFormElement.addEventListener('submit', handleElementsFormSubmit);
 imgPopupExitBtn.addEventListener('click', () => closePopup(imgPopup));
