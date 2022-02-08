@@ -89,6 +89,13 @@ const handleLayoutClick = (evt) => {
   }
 };
 
+const handleEscKeyPress = (evt) => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_active');
+    closePopup(openedPopup);
+  }
+};
+
 const fillCard = (item) => {
   const element = elementsTemplate.cloneNode(true);
   const elementPic = element.querySelector('.element__pic');
@@ -154,4 +161,4 @@ elementsPopupExitBtn.addEventListener('click', () => closePopup(elementsPopup));
 elementsFormElement.addEventListener('submit', handleElementsFormSubmit);
 imgPopupExitBtn.addEventListener('click', () => closePopup(imgPopup));
 document.addEventListener('click', handleLayoutClick);
-
+document.addEventListener('keydown', handleEscKeyPress);
