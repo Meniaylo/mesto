@@ -41,9 +41,14 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
       <form class="form" name="profileCtrl">
-        <input id="name-input" class="form__input" type="text" name="inputName" value="1">
-        <span class="name-input-error"></span>
-        <input id="occupation-input" class="form__input" type="text" name="inputOccupation" value="2">
+        <div class="form__wrap">
+          <input class="form__input" id="name-input" type="text" name="inputName" value="1" minlength="2" maxlength="40" required>
+          <span class="form__input-error name-input-error"></span>
+        </div>
+        <div class="form__wrap">
+          <input class="form__input" id="occupation-input" type="text" name="inputOccupation" value="2" minlength="2" maxlength="200" required>
+          <span class="form__input-error occupation-input-error"></span>
+        </div>
         <button class="form__submit-btn" type="submit">Сохранить</button>
       </form>
     </div>
@@ -54,8 +59,14 @@
       <h2 class="popup__title">Новое место</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
       <form class="form" name="elementsCtrl">
-        <input id="title-input" class="form__input" type="text" name="inputElementTitle" placeholder="Название">
-        <input id="link-input" class="form__input" type="url" name="inputElementLink" placeholder="Ссылка на картинку">
+        <div class="form__wrap">
+          <input class="form__input" id="title-input" type="text" name="inputElementTitle" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="form__input-error title-input-error"></span>
+        </div>
+        <div class="form__wrap">
+          <input class="form__input" id="link-input" type="url" name="inputElementLink" placeholder="Ссылка на картинку" required>
+          <span class="form__input-error link-input-error"></span>
+        </div>
         <button class="form__submit-btn" type="submit">Создать</button>
       </form>
     </div>
