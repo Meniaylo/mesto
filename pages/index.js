@@ -54,6 +54,7 @@ const imgPopupExitBtn = imgPopup.querySelector('.popup__exit-btn');
 const popupImage = imgPopup.querySelector('.popup__img');
 const popupImageTitle = imgPopup.querySelector('.popup__img-title');
 
+
 const handleLikeBtn = (evt) => {
   const eventTarget = evt.target;
   eventTarget.classList.toggle('element__like-btn_active');
@@ -80,6 +81,12 @@ const handleImgClick = (evt) => {
   popupImage.alt = imageAlt;
 
   openPopup(imgPopup);
+};
+
+const handleLayoutClick = (evt) => {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
+  }
 };
 
 const fillCard = (item) => {
@@ -146,3 +153,5 @@ addBtn.addEventListener('click', handleAddBtnClick);
 elementsPopupExitBtn.addEventListener('click', () => closePopup(elementsPopup));
 elementsFormElement.addEventListener('submit', handleElementsFormSubmit);
 imgPopupExitBtn.addEventListener('click', () => closePopup(imgPopup));
+document.addEventListener('click', handleLayoutClick);
+
