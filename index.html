@@ -41,8 +41,9 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
       <form class="form" name="profileCtrl">
-        <input class="form__input" type="text" name="inputName" value="1">
-        <input class="form__input" type="text" name="inputOccupation" value="2">
+        <input id="name-input" class="form__input" type="text" name="inputName" value="1">
+        <span class="name-input-error"></span>
+        <input id="occupation-input" class="form__input" type="text" name="inputOccupation" value="2">
         <button class="form__submit-btn" type="submit">Сохранить</button>
       </form>
     </div>
@@ -53,8 +54,8 @@
       <h2 class="popup__title">Новое место</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
       <form class="form" name="elementsCtrl">
-        <input class="form__input" type="text" name="inputElementTitle" placeholder="Название">
-        <input class="form__input" type="url" name="inputElementLink" placeholder="Ссылка на картинку">
+        <input id="title-input" class="form__input" type="text" name="inputElementTitle" placeholder="Название">
+        <input id="link-input" class="form__input" type="url" name="inputElementLink" placeholder="Ссылка на картинку">
         <button class="form__submit-btn" type="submit">Создать</button>
       </form>
     </div>
@@ -82,6 +83,7 @@
   </template>
 
   <script src="pages/index.js"></script>
+  <script src="pages/validate.js"></script>
 
 </body>
 </html>

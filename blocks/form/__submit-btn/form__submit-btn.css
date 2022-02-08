@@ -14,7 +14,7 @@
   transition: 0.1s ease-in-out;
 }
 
-.form__submit-btn:hover {
+.form__submit-btn:not(.form__submit-btn_inactive):hover {
   opacity: .8;
 }
 
