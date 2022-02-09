@@ -110,6 +110,9 @@ function fillInput() {
   profileInputName.value = profileName.textContent;
   profileInputOccupation.value = profileOccupation.textContent;
   openPopup(profilePopup);
+  setEventListeners(formValidationConfig, profilePopup);
+  hideInputError(formValidationConfig, profilePopup, profileInputName);
+  hideInputError(formValidationConfig, profilePopup, profileInputOccupation);
 };
 
 function handleProfileFormSubmit(evt) {
