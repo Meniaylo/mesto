@@ -42,11 +42,11 @@
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
       <form class="form" name="profileCtrl">
         <div class="form__wrap">
-          <input class="form__input" id="name-input" type="text" name="inputName" value="1" minlength="2" maxlength="40" required>
+          <input class="form__input" id="name-input" type="text" name="inputName" value="1" placeholder="Ваше имя" minlength="2" maxlength="40" required>
           <span class="form__input-error name-input-error"></span>
         </div>
         <div class="form__wrap">
-          <input class="form__input" id="occupation-input" type="text" name="inputOccupation" value="2" minlength="2" maxlength="200" required>
+          <input class="form__input" id="occupation-input" type="text" name="inputOccupation" value="2" placeholder="Род занятий" minlength="2" maxlength="200" required>
           <span class="form__input-error occupation-input-error"></span>
         </div>
         <button class="form__submit-btn" type="submit">Сохранить</button>
@@ -93,8 +93,9 @@
     </article>
   </template>
 
+  <script src="pages/initialcards.js"></script>
+  <script src="scripts/validate.js"></script>
   <script src="pages/index.js"></script>
-  <script src="pages/validate.js"></script>
 
 </body>
 </html>
