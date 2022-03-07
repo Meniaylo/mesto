@@ -1,5 +1,7 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 const elementsSection = document.querySelector('.elements');
-const elementsTemplate = document.querySelector('#elements-template').content.querySelector('.element');
 const addBtn = document.querySelector('.profile__add-btn');
 const elementsPopup = document.querySelector('#elements-popup');
 const elementsPopupExitBtn = elementsPopup.querySelector('.popup__exit-btn');
@@ -18,18 +20,7 @@ const profileFormElement = profilePopup.querySelector('.form');
 
 const imgPopup = document.querySelector('#img-popup');
 const imgPopupExitBtn = imgPopup.querySelector('.popup__exit-btn');
-const popupImage = imgPopup.querySelector('.popup__img');
-const popupImageTitle = imgPopup.querySelector('.popup__img-title');
 
-
-const handleLikeBtn = (evt) => {
-  const eventTarget = evt.target;
-  eventTarget.classList.toggle('element__like-btn_active');
-};
-
-const handleDeleteBtn = (evt) => {
-  evt.target.closest('.element').remove();
-}
 
 function openPopup(popup) {
   popup.classList.add('popup_active');
@@ -42,17 +33,6 @@ function closePopup(popup) {
   document.removeEventListener('click', handleLayoutClick);
   document.removeEventListener('keydown', handleEscKeyPress);
 }
-
-const handleImgClick = (evt) => {
-  const imageUrl = evt.target.src;
-  const imageAlt = evt.target.alt;
-  const element = evt.target.closest('.element');
-  popupImage.src = imageUrl;
-  popupImageTitle.textContent = element.querySelector('.element__name').textContent;
-  popupImage.alt = imageAlt;
-
-  openPopup(imgPopup);
-};
 
 const handleLayoutClick = (evt) => {
   if (evt.target.classList.contains('popup')) {
@@ -67,20 +47,6 @@ const handleEscKeyPress = (evt) => {
   }
 };
 
-const fillCard = (item) => {
-  const element = elementsTemplate.cloneNode(true);
-  const elementPic = element.querySelector('.element__pic');
-  const likeBtn = element.querySelector('.element__like-btn');
-  const deleteBtn = element.querySelector('.element__remove-btn');
-  element.querySelector('.element__name').textContent = item.name;
-  elementPic.src = item.link;
-  elementPic.alt = item.description;
-  likeBtn.addEventListener('click', handleLikeBtn);
-  deleteBtn.addEventListener('click', handleDeleteBtn);
-  elementPic.addEventListener('click', handleImgClick);
-  return element;
-};
-
 const renderCard = (card, wrap, isAppend) => {
   if (isAppend) {
     wrap.append(card);
@@ -90,7 +56,7 @@ const renderCard = (card, wrap, isAppend) => {
 };
 
 initialCards.forEach((item) => {
-  const newCard = fillCard(item);
+  const newCard = new Card(item, '#elements-template', openPopup).generateCard();
   renderCard(newCard, elementsSection, true);
 });
 
@@ -101,7 +67,7 @@ function handleElementsFormSubmit(evt) {
     link: elementsFormInputLink.value,
     description: `Вид на ${elementsFormInputTitle.value}`
   };
-  const newCard = fillCard(newElement);
+  const newCard = new Card(newElement, '#elements-template', openPopup).generateCard();
   renderCard(newCard, elementsSection, false);
   closePopup(elementsPopup);
 };
@@ -110,9 +76,9 @@ function fillInput() {
   profileInputName.value = profileName.textContent;
   profileInputOccupation.value = profileOccupation.textContent;
   openPopup(profilePopup);
-  setEventListeners(formValidationConfig, profilePopup);
-  hideInputError(formValidationConfig, profilePopup, profileInputName);
-  hideInputError(formValidationConfig, profilePopup, profileInputOccupation);
+  new FormValidator(formValidationConfig)._setEventListeners(profilePopup);
+  new FormValidator(formValidationConfig)._hideInputError(profilePopup, profileInputName);
+  new FormValidator(formValidationConfig)._hideInputError(profilePopup, profileInputOccupation);
 };
 
 function handleProfileFormSubmit(evt) {
@@ -136,3 +102,6 @@ addBtn.addEventListener('click', handleAddBtnClick);
 elementsPopupExitBtn.addEventListener('click', () => closePopup(elementsPopup));
 elementsFormElement.addEventListener('submit', handleElementsFormSubmit);
 imgPopupExitBtn.addEventListener('click', () => closePopup(imgPopup));
+
+const validation = new FormValidator(formValidationConfig);
+validation.enableValidation();
