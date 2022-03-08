@@ -1,10 +1,14 @@
 export default class Card {
-  constructor(data, templateSelector, openPopup) {
+  constructor(data, templateSelector, handleCardClick) {
     this._title = data.name;
     this._imageLink = data.link;
     this._description = data.description;
     this._templateSelector = templateSelector;
-    this._openPopup = openPopup;
+    this._handleCardClick = handleCardClick;
+    this._element = this._getTemplate();
+    this._imagePopup = document.querySelector('#img-popup');
+    this._likeBtn = this._element.querySelector('.element__like-btn');
+    this._removeBtn = this._element.querySelector('.element__remove-btn');
   }
 
   _getTemplate() {
@@ -17,8 +21,6 @@ export default class Card {
   }
 
   generateCard() {
-    this._element = this._getTemplate();
-
     this._image = this._element.querySelector('.element__pic');
     this._image.src = this._imageLink;
     this._image.alt = this._description;
@@ -30,25 +32,16 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.element__like-btn').addEventListener('click', (evt) => {
+    this._likeBtn.addEventListener('click', (evt) => {
       evt.target.classList.toggle('element__like-btn_active');
     });
 
-    this._element.querySelector('.element__remove-btn').addEventListener('click', () => {
+    this._removeBtn.addEventListener('click', () => {
       this._element.remove();
     });
 
     this._image.addEventListener('click', () => {
-      this._handleImageClick();
+      this._handleCardClick(this._title, this._imageLink, this._description);
     });
-  }
-
-  _handleImageClick() {
-    const popupImage = document.querySelector('.popup__img');
-    popupImage.src = this._image.src;
-    document.querySelector('.popup__img-title').textContent = this._title;
-    popupImage.alt = this._image.alt;
-
-    this._openPopup(document.querySelector('#img-popup'));
   }
 }

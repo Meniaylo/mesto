@@ -20,6 +20,8 @@ const profileFormElement = profilePopup.querySelector('.form');
 
 const imgPopup = document.querySelector('#img-popup');
 const imgPopupExitBtn = imgPopup.querySelector('.popup__exit-btn');
+const popupImage = document.querySelector('.popup__img');
+const popupImageTitle = document.querySelector('.popup__img-title');
 
 
 function openPopup(popup) {
@@ -56,7 +58,7 @@ const renderCard = (card, wrap, isAppend) => {
 };
 
 initialCards.forEach((item) => {
-  const newCard = new Card(item, '#elements-template', openPopup).generateCard();
+  const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
   renderCard(newCard, elementsSection, true);
 });
 
@@ -67,7 +69,7 @@ function handleElementsFormSubmit(evt) {
     link: elementsFormInputLink.value,
     description: `Вид на ${elementsFormInputTitle.value}`
   };
-  const newCard = new Card(newElement, '#elements-template', openPopup).generateCard();
+  const newCard = new Card(newElement, '#elements-template', handleCardClick).generateCard();
   renderCard(newCard, elementsSection, false);
   closePopup(elementsPopup);
 };
@@ -94,6 +96,15 @@ function handleAddBtnClick() {
   elementsFormElement.querySelector('.form__submit-btn').classList.add('form__submit-btn_inactive');
   openPopup(elementsPopup);
 };
+
+function handleCardClick(title, link, alt) {
+  popupImage.src = link;
+  popupImageTitle.textContent = title;
+  popupImage.alt = alt;
+  
+  openPopup(imgPopup);
+}
+
 
 editBtn.addEventListener('click', fillInput);
 profilePopupExitBtn.addEventListener('click', () => closePopup(profilePopup));
