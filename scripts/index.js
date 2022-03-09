@@ -25,6 +25,9 @@ const popupImageTitle = document.querySelector('.popup__img-title');
 function openPopup(popup) {
   popup.classList.add('popup_active');
   document.addEventListener('keydown', handleEscKeyPress);
+  const validation = new FormValidator(formValidationConfig, popup);
+  validation.resetValidation();
+  validation.enableValidation();
 }
 
 function closePopup(popup) {
@@ -82,9 +85,9 @@ function fillInput() {
   profileInputName.value = profileName.textContent;
   profileInputOccupation.value = profileOccupation.textContent;
   openPopup(profilePopup);
-  new FormValidator(formValidationConfig)._setEventListeners(profilePopup);
-  new FormValidator(formValidationConfig)._hideInputError(profilePopup, profileInputName);
-  new FormValidator(formValidationConfig)._hideInputError(profilePopup, profileInputOccupation);
+  // new FormValidator(formValidationConfig)._setEventListeners(profilePopup);
+  // new FormValidator(formValidationConfig)._hideInputError(profilePopup, profileInputName);
+  // new FormValidator(formValidationConfig)._hideInputError(profilePopup, profileInputOccupation);
 };
 
 function handleProfileFormSubmit(evt) {
@@ -97,8 +100,9 @@ function handleProfileFormSubmit(evt) {
 function handleAddBtnClick() {
   elementsFormInputTitle.value = '';
   elementsFormInputLink.value = '';
-  elementsFormElement.querySelector('.form__submit-btn').classList.add('form__submit-btn_inactive');
   openPopup(elementsPopup);
+  // const validate = new FormValidator(formValidationConfig, elementsPopup);
+  // validate.resetValidation();
 };
 
 function handleCardClick(title, link, alt) {
@@ -114,6 +118,3 @@ editBtn.addEventListener('click', fillInput);
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 addBtn.addEventListener('click', handleAddBtnClick);
 elementsFormElement.addEventListener('submit', handleElementsFormSubmit);
-
-const validation = new FormValidator(formValidationConfig);
-validation.enableValidation();
