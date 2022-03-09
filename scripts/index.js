@@ -25,9 +25,9 @@ const popupImageTitle = document.querySelector('.popup__img-title');
 function openPopup(popup) {
   popup.classList.add('popup_active');
   document.addEventListener('keydown', handleEscKeyPress);
-  const validation = new FormValidator(formValidationConfig, popup);
-  validation.resetValidation();
-  validation.enableValidation();
+  // const validation = new FormValidator(formValidationConfig, popup);
+  // validation.resetValidation();
+  // validation.enableValidation();
 }
 
 function closePopup(popup) {
@@ -85,9 +85,9 @@ function fillInput() {
   profileInputName.value = profileName.textContent;
   profileInputOccupation.value = profileOccupation.textContent;
   openPopup(profilePopup);
-  // new FormValidator(formValidationConfig)._setEventListeners(profilePopup);
-  // new FormValidator(formValidationConfig)._hideInputError(profilePopup, profileInputName);
-  // new FormValidator(formValidationConfig)._hideInputError(profilePopup, profileInputOccupation);
+  const validation = new FormValidator(formValidationConfig, profilePopup);
+  validation.resetValidation();
+  validation.enableValidation();
 };
 
 function handleProfileFormSubmit(evt) {
@@ -101,8 +101,9 @@ function handleAddBtnClick() {
   elementsFormInputTitle.value = '';
   elementsFormInputLink.value = '';
   openPopup(elementsPopup);
-  // const validate = new FormValidator(formValidationConfig, elementsPopup);
-  // validate.resetValidation();
+  const validation = new FormValidator(formValidationConfig, elementsPopup);
+  validation.resetValidation();
+  validation.enableValidation();
 };
 
 function handleCardClick(title, link, alt) {
