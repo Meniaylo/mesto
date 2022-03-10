@@ -25,9 +25,6 @@ const popupImageTitle = document.querySelector('.popup__img-title');
 function openPopup(popup) {
   popup.classList.add('popup_active');
   document.addEventListener('keydown', handleEscKeyPress);
-  // const validation = new FormValidator(formValidationConfig, popup);
-  // validation.resetValidation();
-  // validation.enableValidation();
 }
 
 function closePopup(popup) {
@@ -85,9 +82,7 @@ function fillInput() {
   profileInputName.value = profileName.textContent;
   profileInputOccupation.value = profileOccupation.textContent;
   openPopup(profilePopup);
-  const validation = new FormValidator(formValidationConfig, profilePopup);
-  validation.resetValidation();
-  validation.enableValidation();
+  profileValidation.resetValidation();
 };
 
 function handleProfileFormSubmit(evt) {
@@ -101,9 +96,7 @@ function handleAddBtnClick() {
   elementsFormInputTitle.value = '';
   elementsFormInputLink.value = '';
   openPopup(elementsPopup);
-  const validation = new FormValidator(formValidationConfig, elementsPopup);
-  validation.resetValidation();
-  validation.enableValidation();
+  elementsValidation.resetValidation();
 };
 
 function handleCardClick(title, link, alt) {
@@ -114,6 +107,10 @@ function handleCardClick(title, link, alt) {
   openPopup(imgPopup);
 }
 
+const profileValidation = new FormValidator(formValidationConfig, profilePopup);
+profileValidation.enableValidation();
+const elementsValidation = new FormValidator(formValidationConfig, elementsPopup);
+elementsValidation.enableValidation();
 
 editBtn.addEventListener('click', fillInput);
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
