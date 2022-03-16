@@ -19,15 +19,15 @@ const profileInputOccupation = profilePopup.querySelector('[name="inputOccupatio
 const profileFormElement = profilePopup.querySelector('.form');
 
 
-// function openPopup(popup) {
-//   popup.classList.add('popup_active');
-//   document.addEventListener('keydown', handleEscKeyPress);
-// }
+function openPopup(popup) {
+  popup.classList.add('popup_active');
+  document.addEventListener('keydown', handleEscKeyPress);
+}
 
-// function closePopup(popup) {
-//   popup.classList.remove('popup_active');
-//   document.removeEventListener('keydown', handleEscKeyPress);
-// }
+function closePopup(popup) {
+  popup.classList.remove('popup_active');
+  document.removeEventListener('keydown', handleEscKeyPress);
+}
 
 const popups = document.querySelectorAll('.popup');
 popups.forEach((popup) => {
@@ -61,19 +61,6 @@ const cardList = new Section({
 cardList.renderItems();
 
 
-function handleElementsFormSubmit(evt) {
-  evt.preventDefault();
-  const newElement = {
-    name: elementsFormInputTitle.value,
-    link: elementsFormInputLink.value,
-    description: `Вид на ${elementsFormInputTitle.value}`
-  };
-  const newCard = createCard(newElement);
-  cardList.addItem(newCard, false);
-  
-  closePopup(elementsPopup);
-};
-
 function fillInput() {
   profileInputName.value = profileName.textContent;
   profileInputOccupation.value = profileOccupation.textContent;
@@ -87,6 +74,24 @@ function handleProfileFormSubmit(evt) {
   profileOccupation.textContent = profileInputOccupation.value;
   closePopup(profilePopup);
 };
+
+function handleElementsFormSubmit(evt) {
+  evt.preventDefault();
+  const newElement = {
+    name: elementsFormInputTitle.value,
+    link: elementsFormInputLink.value,
+    description: `Вид на ${elementsFormInputTitle.value}`
+  };
+  const newCard = createCard(newElement);
+  cardList.addItem(newCard, false);
+  
+  closePopup(elementsPopup);
+};
+
+// function handleFormSubmit(formData) {
+
+// }
+
 
 function handleAddBtnClick() {
   elementsFormInputTitle.value = '';
