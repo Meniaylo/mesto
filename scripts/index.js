@@ -1,5 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import Section from './Section.js';
 
 const elementsSection = document.querySelector('.elements');
 const addBtn = document.querySelector('.profile__add-btn');
@@ -48,23 +49,33 @@ const handleEscKeyPress = (evt) => {
   }
 };
 
-const renderCard = (card, wrap, isAppend) => {
-  if (isAppend) {
-    wrap.append(card);
-  } else {
-    wrap.prepend(card);
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
+    cardList.addItem(newCard, true);
   }
-};
+}, '.elements')
 
-const createCard = (item) => {
-  const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
-  return newCard;
-};
+cardList.renderItems();
 
-initialCards.forEach((item) => {
-  const newCard = createCard(item);
-  renderCard(newCard, elementsSection, true);
-});
+// const renderCard = (card, wrap, isAppend) => {
+//   if (isAppend) {
+//     wrap.append(card);
+//   } else {
+//     wrap.prepend(card);
+//   }
+// };
+
+// const createCard = (item) => {
+//   const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
+//   return newCard;
+// };
+
+// initialCards.forEach((item) => {
+//   const newCard = createCard(item);
+//   renderCard(newCard, elementsSection, true);
+// });
 
 function handleElementsFormSubmit(evt) {
   evt.preventDefault();
