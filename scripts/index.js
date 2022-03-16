@@ -10,6 +10,7 @@ const elementsFormInputTitle = elementsPopup.querySelector('[name="inputElementT
 const elementsFormInputLink = elementsPopup.querySelector('[name="inputElementLink"]');
 
 const editBtn = document.querySelector('.profile__edit-btn');
+
 const profilePopup = document.querySelector('#profile-popup');
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
@@ -49,33 +50,21 @@ const handleEscKeyPress = (evt) => {
   }
 };
 
+const createCard = (item) => {
+  const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
+  return newCard;
+};
+
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
+    const newCard = createCard(item);
     cardList.addItem(newCard, true);
   }
 }, '.elements')
 
 cardList.renderItems();
 
-// const renderCard = (card, wrap, isAppend) => {
-//   if (isAppend) {
-//     wrap.append(card);
-//   } else {
-//     wrap.prepend(card);
-//   }
-// };
-
-// const createCard = (item) => {
-//   const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
-//   return newCard;
-// };
-
-// initialCards.forEach((item) => {
-//   const newCard = createCard(item);
-//   renderCard(newCard, elementsSection, true);
-// });
 
 function handleElementsFormSubmit(evt) {
   evt.preventDefault();
@@ -85,7 +74,8 @@ function handleElementsFormSubmit(evt) {
     description: `Вид на ${elementsFormInputTitle.value}`
   };
   const newCard = createCard(newElement);
-  renderCard(newCard, elementsSection, false);
+  cardList.addItem(newCard, false);
+  
   closePopup(elementsPopup);
 };
 
