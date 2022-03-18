@@ -1,20 +1,38 @@
 import Popup from "./Popup.js";
 
+
 export default class PopupWithForm extends Popup {
-    constructor(popupSelector) {
+    constructor({ popupSelector, handleFormSubmit }) {
       super(popupSelector);
+      this._handleFormSubmit = handleFormSubmit;
+      this._form = this._popupElement.querySelector('.form');
+      this._inputsList = this._popupElement.querySelectorAll('.form__input');
     }
     
     close() {
       super.close();
-      // this.form.reset();
+      this._form.reset();
     }
 
     _getInputValues() {
-
+      this._formValues = {};
+      this._inputsList.forEach(input => {
+        this._formValues[input.name] = input.value;
+      })
+      return this._formValues;
     }
+    
+    // showInputValues() {
+    //   return this._getInputValues();
+    // }
 
     setEventListeners() {
+      super.setEventListeners();
 
+      this._popupElement.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+
+        this._handleFormSubmit(this._getInputValues());  
+      })
     }
   }
