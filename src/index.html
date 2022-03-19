@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
     <title>Mesto</title>
 </head>
 
 <body class="root">
   <header class="header">
     <a class="header__logo" href=#>
-      <img class="header__logo-img" src="images/logo.svg" alt="Логотип: Место">
+      <img class="header__logo-img" src="<%=require('../images/logo.svg')%>" alt="Логотип: Место">
     </a>
   </header>
 
   <main class="content">
     <section class="profile">
       <div class="profile__card">
-        <img class="profile__avatar" src="images/cousteau.jpg" alt="Аватар пользователя">
+        <img class="profile__avatar" src="<%=require('../images/cousteau.jpg')%>" alt="Аватар пользователя">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__occupation">Исследователь океана</p>
@@ -106,7 +105,7 @@
 
   <section class="popup popup_content_img" id="img-popup">
     <div class="popup__img-container">
-      <img class="popup__img" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="2">
+      <img class="popup__img" src="<%=require('../images/cousteau.jpg')%>" alt="2">
       <h2 class="popup__img-title">Название места</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
     </div>
@@ -115,7 +114,7 @@
   <template id="elements-template">
     <article class="element">
       <div class="element__pic-wrapper">
-        <img class="element__pic" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="2">
+        <img class="element__pic" src="<%=require('../images/cousteau.jpg')%>" alt="2">
         <button class="element__remove-btn link" type="button" aria-label="Удалить"></button>
       </div>
       <div class="element__info">
@@ -124,16 +123,6 @@
       </div>
     </article>
   </template>
-
-  <script type="module" src="./utils/constants.js"></script>
-  <script type="module" src="./pages/index.js"></script>
-  <script type="module" src="./components/Card.js"></script>
-  <script type="module" src="./components/FormValidator.js"></script>
-  <script type="module" src="./components/Popup.js"></script>
-  <script type="module" src="./components/PopupWithForm.js"></script>
-  <script type="module" src="./components/PopupWithImage.js"></script>
-  <script type="module" src="./components/Section.js"></script>
-  <script type="module" src="./components/UserInfo.js"></script>
 
 </body>
 </html>
