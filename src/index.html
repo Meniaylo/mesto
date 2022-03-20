@@ -10,14 +10,14 @@
 <body class="root">
   <header class="header">
     <a class="header__logo" href=#>
-      <img class="header__logo-img" src="<%=require('../images/logo.svg')%>" alt="Логотип: Место">
+      <img class="header__logo-img" src="<%=require('./images/logo.svg')%>" alt="Логотип: Место">
     </a>
   </header>
 
   <main class="content">
     <section class="profile">
       <div class="profile__card">
-        <img class="profile__avatar" src="<%=require('../images/cousteau.jpg')%>" alt="Аватар пользователя">
+        <img class="profile__avatar" src="<%=require('./images/cousteau.jpg')%>" alt="Аватар пользователя">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__occupation">Исследователь океана</p>
@@ -105,7 +105,7 @@
 
   <section class="popup popup_content_img" id="img-popup">
     <div class="popup__img-container">
-      <img class="popup__img" src="<%=require('../images/cousteau.jpg')%>" alt="2">
+      <img class="popup__img" src="<%=require('./images/cousteau.jpg')%>" alt="2">
       <h2 class="popup__img-title">Название места</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
     </div>
@@ -114,7 +114,7 @@
   <template id="elements-template">
     <article class="element">
       <div class="element__pic-wrapper">
-        <img class="element__pic" src="<%=require('../images/cousteau.jpg')%>" alt="2">
+        <img class="element__pic" src="<%=require('./images/cousteau.jpg')%>" alt="2">
         <button class="element__remove-btn link" type="button" aria-label="Удалить"></button>
       </div>
       <div class="element__info">

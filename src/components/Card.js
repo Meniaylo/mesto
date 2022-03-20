@@ -6,7 +6,6 @@ export default class Card {
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._element = this._getTemplate();
-    this._imagePopup = document.querySelector('#img-popup');
     this._likeBtn = this._element.querySelector('.element__like-btn');
     this._removeBtn = this._element.querySelector('.element__remove-btn');
   }

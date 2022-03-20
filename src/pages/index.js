@@ -25,6 +25,17 @@ const userInfo = new UserInfo({
 })
 
 
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
+    return newCard;
+  }
+}, '.elements')
+
+cardList.renderItems(true);
+console.log(cardList.renderItems(true));
+
 const elementAddPopup = new PopupWithForm({
   popupSelector: '#elements-popup',
   handleFormSubmit: (data) => {
@@ -35,12 +46,12 @@ const elementAddPopup = new PopupWithForm({
       link: inputsData.inputElementLink,
       description: `Вид на ${inputsData.inputElementTitle}`
     };
-      
-    const newCard = createCard(newElement);
-    cardList.addItem(newCard, false);
+    
+    cardList.addItem(newElement, false);
     elementAddPopup.close();
   }
 })
+elementAddPopup.setEventListeners();
 
 
 const profileChangePopup = new PopupWithForm({
@@ -50,23 +61,7 @@ const profileChangePopup = new PopupWithForm({
     profileChangePopup.close();
     }
 })
-
-
-const createCard = (item) => {
-  const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
-  return newCard;
-};
-  
-
-const cardList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const newCard = createCard(item);
-    cardList.addItem(newCard, true);
-  }
-}, '.elements')
-  
-cardList.renderItems();  
+profileChangePopup.setEventListeners();
 
 
 function handleEditBtnClick() {
@@ -75,7 +70,6 @@ function handleEditBtnClick() {
   profileInputOccupation.value = user.occupation;
 
   profileChangePopup.open();
-  profileChangePopup.setEventListeners();
 
   profileValidation.resetValidation();
 };
@@ -83,16 +77,15 @@ function handleEditBtnClick() {
 
 function handleAddBtnClick() {
   elementAddPopup.open();
-  elementAddPopup.setEventListeners();
   
   elementsValidation.resetValidation();
 };
-    
+
+const newPopupWithImage = new PopupWithImage('#img-popup');
+newPopupWithImage.setEventListeners();
 
 function handleCardClick(title, link, alt) {
-  const newPopupWithImage = new PopupWithImage('#img-popup');
   newPopupWithImage.open(title, link, alt);
-  newPopupWithImage.setEventListeners();
 }
 
 const profileValidation = new FormValidator(formValidationConfig, profilePopup);
