@@ -11,9 +11,7 @@ import UserInfo from '../components/UserInfo.js';
 const addBtn = document.querySelector('.profile__add-btn');
 const editBtn = document.querySelector('.profile__edit-btn');
 
-const elementsPopup = document.querySelector('#elements-popup');
 const profilePopup = document.querySelector('#profile-popup');
-
 const profileInputName = profilePopup.querySelector('[name="inputName"]');
 const profileInputOccupation = profilePopup.querySelector('[name="inputOccupation"]');
 
@@ -34,7 +32,7 @@ const cardList = new Section({
 }, '.elements')
 
 cardList.renderItems(true);
-console.log(cardList.renderItems(true));
+
 
 const elementAddPopup = new PopupWithForm({
   popupSelector: '#elements-popup',
@@ -71,14 +69,14 @@ function handleEditBtnClick() {
 
   profileChangePopup.open();
 
-  profileValidation.resetValidation();
+  formValidators['profileCtrl'].resetValidation();
 };
 
 
 function handleAddBtnClick() {
   elementAddPopup.open();
   
-  elementsValidation.resetValidation();
+  formValidators['elementsCtrl'].resetValidation();
 };
 
 const newPopupWithImage = new PopupWithImage('#img-popup');
@@ -88,10 +86,22 @@ function handleCardClick(title, link, alt) {
   newPopupWithImage.open(title, link, alt);
 }
 
-const profileValidation = new FormValidator(formValidationConfig, profilePopup);
-profileValidation.enableValidation();
-const elementsValidation = new FormValidator(formValidationConfig, elementsPopup);
-elementsValidation.enableValidation();
+
+const formValidators = {}
+
+const enableValidation = (formValidationConfig) => {
+  const formsList = Array.from(document.querySelectorAll(formValidationConfig.formSelector));
+  formsList.forEach((formElement) => {
+    const validator = new FormValidator(formValidationConfig, formElement);
+
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+    
+    validator.enableValidation();
+  });
+};
+
+enableValidation(formValidationConfig);
 
 
 editBtn.addEventListener('click', handleEditBtnClick);

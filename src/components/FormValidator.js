@@ -13,6 +13,7 @@ export default class FormValidator {
 
 
   enableValidation() {
+    console.log('hi!');
     this._toggleButtonState();
 
     this._inputsList.forEach((inputElement) => {
