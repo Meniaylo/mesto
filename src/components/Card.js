@@ -3,11 +3,14 @@ export default class Card {
     this._title = data.name;
     this._imageLink = data.link;
     this._description = `Вид на ${data.name}`;
+    this._likedUsers = data.likes;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._element = this._getTemplate();
     this._likeBtn = this._element.querySelector('.element__like-btn');
     this._removeBtn = this._element.querySelector('.element__remove-btn');
+    this._likesCounter = this._element.querySelector('.element__like-counter');
+    console.log(this._likedUsers);
   }
 
   _getTemplate() {
@@ -24,6 +27,7 @@ export default class Card {
     this._image.src = this._imageLink;
     this._image.alt = this._description;
     this._element.querySelector('.element__name').textContent = this._title;
+    this._likesCounter.textContent = this._likedUsers.length;
 
     this._setEventListeners();
 
