@@ -33,18 +33,19 @@ api.getUserInfo()
   })
 
 
+  const cardList = new Section({
+    renderer: (item) => {
+      const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
+      return newCard;
+    }
+  }, '.elements')
+
+
 api.getInitialCards()
   .then((data) => {
-    const cardList = new Section({
-      items: data,
-      renderer: (item) => {
-        const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
-        return newCard;
-      }
-    }, '.elements')
-
-    cardList.renderItems(true);
+    cardList.renderItems(data, true);
   })
+
 
 
 const elementAddPopup = new PopupWithForm({
@@ -59,6 +60,7 @@ const elementAddPopup = new PopupWithForm({
     };
     
     cardList.addItem(newElement, false);
+    api.postCard(data);
     elementAddPopup.close();
   }
 })

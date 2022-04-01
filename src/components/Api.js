@@ -42,4 +42,16 @@ export default class Api {
       })
     })
   }
+
+
+  postCard(data) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.inputElementTitle,
+        link: data.inputElementLink
+      })
+    })
+  }
 }
