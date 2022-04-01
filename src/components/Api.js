@@ -1,27 +1,32 @@
 export default class Api {
-  constructor({ url, headers }) {
-    this._url = url;
-    this._headers = headers;
+  constructor(apiInfo) {
+    this._baseUrl = apiInfo.baseUrl;
+    this._headers = apiInfo.headers;
+  }
+
+  _handleServerResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getInitialCards() {
-    return fetch('https://mesto.nomoreparties.co/v1/cohort-38/cards', {
-      headers: {
-        authorization: "44e7fc01-af6b-414e-a259-74a30bc2c0eb",
-      },
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    .then((res) => this._handleServerResponse(res))
   }
 
   getUserInfo() {
-    return fetch('https://nomoreparties.co/v1/cohortId/users/me', {
-      method: 'GET'
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      headers: this._headers
     })
+    .then((res) => this._handleServerResponse(res))
+    .then((dataObject) => {
+      return dataObject;
+    })
+    .catch(err => console.log(err))
   }
 }

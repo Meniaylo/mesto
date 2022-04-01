@@ -17,10 +17,12 @@
   <main class="content">
     <section class="profile">
       <div class="profile__card">
-        <img class="profile__avatar" src="<%=require('./images/cousteau.jpg')%>" alt="Аватар пользователя">
+        <div class="profile__avatar-wrapper">
+          <img class="profile__avatar" src="" alt="Аватар пользователя">
+        </div>
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <p class="profile__occupation">Исследователь океана</p>
+          <h1 class="profile__name">#</h1>
+          <p class="profile__occupation">#</p>
           <button class="profile__edit-btn link" type="button" aria-label="Вывести"></button>
         </div>
       </div>
@@ -111,6 +113,12 @@
     </div>
   </section>
 
+  <section class="popup" id="confirm-popup">
+    <div class="popup__container popup__container_content_confirm">
+      <h2 class="popup__title">Вы уверены?</h2>
+    </div>
+  </section>
+
   <template id="elements-template">
     <article class="element">
       <div class="element__pic-wrapper">
@@ -119,7 +127,10 @@
       </div>
       <div class="element__info">
         <h2 class="element__name"></h2>
-        <button class="element__like-btn" type="button" aria-label="Лайк"></button>
+        <div class="element__like-wrapper">
+          <button class="element__like-btn" type="button" aria-label="Лайк"></button>
+          <p class="element__like-counter">0</p>
+        </div>
       </div>
     </article>
   </template>

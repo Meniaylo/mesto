@@ -1,6 +1,6 @@
 import './index.css';
 
-import { initialCards, formValidationConfig } from '../utils/constants.js';
+import { initialCards, formValidationConfig, apiInfo } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -18,10 +18,19 @@ const profileInputOccupation = profilePopup.querySelector('[name="inputOccupatio
 
 
 
+const api = new Api(apiInfo);
+
+
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
-  occupationSelector: '.profile__occupation'
+  occupationSelector: '.profile__occupation',
+  avatarSelector: '.profile__avatar'
 })
+
+api.getUserInfo()
+  .then((data) => {
+    userInfo.setUserInfoFromServer(data);
+  })
 
 
 const cardList = new Section({
@@ -33,6 +42,9 @@ const cardList = new Section({
 }, '.elements')
 
 cardList.renderItems(true);
+
+api.getInitialCards()
+  .then(res => console.log(res));
 
 
 const elementAddPopup = new PopupWithForm({
