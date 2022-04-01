@@ -6,6 +6,7 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import ConfirmPopup from '../components/ConfirmPopup.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
@@ -35,7 +36,7 @@ api.getUserInfo()
 
   const cardList = new Section({
     renderer: (item) => {
-      const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
+      const newCard = new Card(item, '#elements-template', handleCardClick, handleRemoveBtnClick).generateCard();
       return newCard;
     }
   }, '.elements')
@@ -78,6 +79,10 @@ const profileChangePopup = new PopupWithForm({
 profileChangePopup.setEventListeners();
 
 
+const confirmPopup = new ConfirmPopup('#confirm-popup');
+confirmPopup.setEventListeners();
+
+
 function handleEditBtnClick() {
   const user = userInfo.getUserInfo();
   profileInputName.value = user.name;
@@ -100,6 +105,10 @@ newPopupWithImage.setEventListeners();
 
 function handleCardClick(title, link, alt) {
   newPopupWithImage.open(title, link, alt);
+}
+
+function handleRemoveBtnClick() {
+  confirmPopup.open();
 }
 
 

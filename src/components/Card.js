@@ -1,16 +1,16 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, handleRemoveBtnClick) {
     this._title = data.name;
     this._imageLink = data.link;
     this._description = `Вид на ${data.name}`;
     this._likedUsers = data.likes;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleRemoveBtnClick = handleRemoveBtnClick;
     this._element = this._getTemplate();
     this._likeBtn = this._element.querySelector('.element__like-btn');
     this._removeBtn = this._element.querySelector('.element__remove-btn');
     this._likesCounter = this._element.querySelector('.element__like-counter');
-    console.log(this._likedUsers);
   }
 
   _getTemplate() {
@@ -40,7 +40,8 @@ export default class Card {
     });
 
     this._removeBtn.addEventListener('click', () => {
-      this._element.remove();
+      this._handleRemoveBtnClick();
+      // this._element.remove();
     });
 
     this._image.addEventListener('click', () => {
