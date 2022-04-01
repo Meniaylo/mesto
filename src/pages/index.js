@@ -1,6 +1,6 @@
 import './index.css';
 
-import { initialCards, formValidationConfig, apiInfo } from '../utils/constants.js';
+import { formValidationConfig, apiInfo } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -33,18 +33,30 @@ api.getUserInfo()
   })
 
 
-const cardList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
-    return newCard;
-  }
-}, '.elements')
-
-cardList.renderItems(true);
-
 api.getInitialCards()
-  .then(res => console.log(res));
+  .then((data) => {
+    const cardList = new Section({
+      items: data,
+      renderer: (item) => {
+        const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
+        return newCard;
+      }
+    }, '.elements')
+
+    cardList.renderItems(true);
+  })
+
+
+// const cardList = new Section({
+//   items: initialCards,
+//   renderer: (item) => {
+//     const newCard = new Card(item, '#elements-template', handleCardClick).generateCard();
+//     return newCard;
+//   }
+// }, '.elements')
+
+// cardList.renderItems(true);
+
 
 
 const elementAddPopup = new PopupWithForm({
