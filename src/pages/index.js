@@ -1,6 +1,6 @@
 import './index.css';
 
-import { formValidationConfig, apiInfo } from '../utils/constants.js';
+import { formValidationConfig, apiInfo, myId } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -33,10 +33,19 @@ api.getUserInfo()
     userInfo.setUserInfoFromServer(data);
   })
 
+  
+
+function handleCardClick(title, link, alt) {
+  newPopupWithImage.open(title, link, alt);
+}
+
+function handleRemoveBtnClick(id) {
+  confirmPopup.open(id);
+}
 
   const cardList = new Section({
     renderer: (item) => {
-      const newCard = new Card(item, '#elements-template', handleCardClick, handleRemoveBtnClick).generateCard();
+      const newCard = new Card(myId, item, '#elements-template', handleCardClick, handleRemoveBtnClick).generateCard();
       return newCard;
     }
   }, '.elements')
@@ -46,22 +55,19 @@ api.getInitialCards()
   .then((data) => {
     cardList.renderItems(data, true);
   })
+  .catch(err => console.log(err))
 
 
 
 const elementAddPopup = new PopupWithForm({
   popupSelector: '#elements-popup',
   handleFormSubmit: (data) => {
-    const inputsData = data;
+    api.postCard(data)
+    .then((res) => {
+      cardList.addItem(res, false);
+    })
+    .catch(err => console.log(err))
     
-    const newElement = {
-      name: inputsData.inputElementTitle,
-      link: inputsData.inputElementLink,
-      description: `Вид на ${inputsData.inputElementTitle}`
-    };
-    
-    cardList.addItem(newElement, false);
-    api.postCard(data);
     elementAddPopup.close();
   }
 })
@@ -103,13 +109,6 @@ function handleAddBtnClick() {
 const newPopupWithImage = new PopupWithImage('#img-popup');
 newPopupWithImage.setEventListeners();
 
-function handleCardClick(title, link, alt) {
-  newPopupWithImage.open(title, link, alt);
-}
-
-function handleRemoveBtnClick() {
-  confirmPopup.open();
-}
 
 
 const formValidators = {}
