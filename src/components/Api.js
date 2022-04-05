@@ -32,6 +32,19 @@ export default class Api {
   }
 
 
+  changeAvatar(avatarUrl) {
+    console.log(avatarUrl);
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: avatarUrl
+      })
+    })
+    .then(res => this._handleServerResponse(res))
+  }
+
+
   patchUserInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',

@@ -8,6 +8,15 @@ export const formValidationConfig = {
   submitBtnInactiveClass: 'form__submit-btn_inactive'
 };
 
+
+export const userProfileConfig = {
+  nameSelector: '.profile__name',
+  occupationSelector: '.profile__occupation',
+  avatarSelector: '.profile__avatar',
+  avatarWrapperToClick: '.profile__avatar-wrapper'
+}
+
+
 export const apiInfo = {
   baseUrl: 'https://nomoreparties.co/v1/cohort-38',
   headers: {
@@ -15,5 +24,6 @@ export const apiInfo = {
     'content-type': 'application/json'
   }
 }
+
 
 export const myId = '3fbcaa9423e315510b0fee1d';

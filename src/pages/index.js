@@ -1,12 +1,13 @@
 import './index.css';
 
-import { formValidationConfig, apiInfo, myId } from '../utils/constants.js';
+import { formValidationConfig, userProfileConfig, apiInfo, myId } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import ConfirmPopup from '../components/ConfirmPopup.js';
+import PopupToSetAvatar from '../components/PopupToSetAvatar.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
@@ -17,22 +18,22 @@ const profilePopup = document.querySelector('#profile-popup');
 const profileInputName = profilePopup.querySelector('[name="inputName"]');
 const profileInputOccupation = profilePopup.querySelector('[name="inputOccupation"]');
 
-
+// window.addEventListener('click', (e) => {console.log(e.target)});
 
 const api = new Api(apiInfo);
 
 
 const userInfo = new UserInfo({
-  nameSelector: '.profile__name',
-  occupationSelector: '.profile__occupation',
-  avatarSelector: '.profile__avatar'
-})
+  userProfileConfig: userProfileConfig,
+  handleAvatarClick: () => {
+    popupToSetAvatar.open();
+  }});
 
 api.getUserInfo()
   .then((data) => {
     userInfo.setUserInfoFromServer(data);
   })
-
+userInfo.setEventListeners();
   
 
 function handleCardClick(title, link, alt) {
@@ -104,6 +105,19 @@ const profileChangePopup = new PopupWithForm({
 profileChangePopup.setEventListeners();
 
 
+const popupToSetAvatar = new PopupWithForm({
+  popupSelector: '#newAvatar-popup',
+  handleFormSubmit: (inputValue) => {
+    const url = inputValue.inputAvatarLink;
+    api.changeAvatar(url)
+    .then(() => userInfo.setAvatar(url))
+    .then(() => popupToSetAvatar.close())
+    .catch(err => console.log(err))
+  }
+});
+popupToSetAvatar.setEventListeners();
+
+
 const confirmPopup = new ConfirmPopup({
   popupSelector: '#confirm-popup',
   handleConfirmation: (cardId, card) => {
@@ -133,9 +147,9 @@ function handleAddBtnClick() {
   formValidators['elementsCtrl'].resetValidation();
 };
 
+
 const newPopupWithImage = new PopupWithImage('#img-popup');
 newPopupWithImage.setEventListeners();
-
 
 
 const formValidators = {}

@@ -1,8 +1,10 @@
 export default class UserInfo {
-  constructor({ nameSelector, occupationSelector, avatarSelector }) {
-    this._userName = document.querySelector(nameSelector);
-    this._userOccupation = document.querySelector(occupationSelector);
-    this._userAvatar = document.querySelector(avatarSelector);
+  constructor({ userProfileConfig, handleAvatarClick }) {
+    this._userName = document.querySelector(userProfileConfig.nameSelector);
+    this._userOccupation = document.querySelector(userProfileConfig.occupationSelector);
+    this._userAvatar = document.querySelector(userProfileConfig.avatarSelector);
+    this._avatarWrapperToClick = document.querySelector(userProfileConfig.avatarWrapperToClick);
+    this._handleAvatarClick = handleAvatarClick;
     this._id = '';
   }
 
@@ -24,5 +26,15 @@ export default class UserInfo {
   setUserInfo(data) {
     this._userName.textContent = data.inputName;
     this._userOccupation.textContent = data.inputOccupation;
+  }
+
+  setAvatar(url) {
+    this._userAvatar.src = url;
+  }
+
+  setEventListeners() {
+    this._avatarWrapperToClick.addEventListener('click', (evt) => {
+      this._handleAvatarClick();
+    })
   }
 }

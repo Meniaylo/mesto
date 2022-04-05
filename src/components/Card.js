@@ -45,18 +45,11 @@ export default class Card {
       this._likeBtn.classList.add('element__like-btn_active');
     }
 
-    
-    // this._setLikesCounter();
     this._setEventListeners();
 
     return this._element;
   }
   
-
-  // _setLikesCounter() {
-  //   this._likesCounter.textContent = this._likedUsers.length;
-  // }
-
 
   _setEventListeners() {
     this._likeBtn.addEventListener('click', (evt) => {

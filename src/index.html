@@ -121,6 +121,26 @@
     </form>
   </section>
 
+  <section class="popup" id="newAvatar-popup">
+    <div class="popup__container">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
+      <form class="form" name="avatarCtrl">
+        <div class="form__wrap">
+          <input
+            class="form__input"
+            id="link-input"
+            type="url"
+            name="inputAvatarLink"
+            placeholder="Ссылка на ваш аватар"
+            required>
+          <span class="form__input-error link-input-error"></span>
+        </div>
+        <button class="form__submit-btn" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
+
   <template id="elements-template">
     <article class="element">
       <div class="element__pic-wrapper">
