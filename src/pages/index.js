@@ -43,9 +43,27 @@ function handleRemoveBtnClick(id, element) {
   confirmPopup.open(id, element);
 }
 
+function handleLikeBtnClick(evt, cardId) {
+  if (!evt.target.classList.contains('element__like-btn_active')) {
+    api.putLike(cardId)
+    .then((res) => {
+      this._likesCounter.textContent = res.likes.length;
+    })
+    .then(() => evt.target.classList.add('element__like-btn_active'))
+    .catch(err => console.log(err))
+  } else {
+    api.deleteLike(cardId)
+    .then((res) => {
+      this._likesCounter.textContent = res.likes.length;
+    })
+    .then(() => evt.target.classList.remove('element__like-btn_active'))
+    .catch(err => console.log(err))
+  }
+}
+
   const cardList = new Section({
     renderer: (item) => {
-      const newCard = new Card(myId, item, '#elements-template', handleCardClick, handleRemoveBtnClick).generateCard();
+      const newCard = new Card(myId, item, '#elements-template', handleCardClick, handleRemoveBtnClick, handleLikeBtnClick).generateCard();
       return newCard;
     }
   }, '.elements')
