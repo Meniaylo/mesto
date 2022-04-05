@@ -52,7 +52,10 @@ function handleLikeBtnClick(evt, cardId) {
       this._likesCounter.textContent = res.likes.length;
     })
     .then(() => evt.target.classList.add('element__like-btn_active'))
-    .catch(err => console.log(err))
+    .catch((err) => {
+      console.log(`Ошибка! ${err}`);
+      errorPopup.open();
+    })
   } else {
     api.deleteLike(cardId)
     .then((res) => {
@@ -60,7 +63,7 @@ function handleLikeBtnClick(evt, cardId) {
     })
     .then(() => evt.target.classList.remove('element__like-btn_active'))
     .catch((err) => {
-      console.log(err);
+      console.log(`Ошибка! ${err}`);
       errorPopup.open();
     })
   }
@@ -78,7 +81,10 @@ api.getInitialCards()
   .then((data) => {
     cardList.renderItems(data, true);
   })
-  .catch(err => console.log(err))
+  .catch((err) => {
+    console.log(`Ошибка! ${err}`);
+    errorPopup.open();
+  })
 
 
 
@@ -90,7 +96,10 @@ const elementAddPopup = new PopupWithForm({
     .then((res) => {
       cardList.addItem(res, false);
     })
-    .catch(err => console.log(err))
+    .catch((err) => {
+      console.log(`Ошибка! ${err}`);
+      errorPopup.open();
+    })
     .finally(() => elementAddPopup.submitBtn.textContent = 'Создать')
     
     elementAddPopup.close();
@@ -106,7 +115,10 @@ const profileChangePopup = new PopupWithForm({
     api.patchUserInfo(data)
     .then(() => userInfo.setUserInfo(data))
     .then(() => profileChangePopup.close())
-    .catch(err => console.log(err))
+    .catch((err) => {
+      console.log(`Ошибка! ${err}`);
+      errorPopup.open();
+    })
     .finally(() => profileChangePopup.submitBtn.textContent = 'Создать')
     }
 });
@@ -121,7 +133,10 @@ const popupToSetAvatar = new PopupWithForm({
     api.changeAvatar(url)
     .then(() => userInfo.setAvatar(url))
     .then(() => popupToSetAvatar.close())
-    .catch(err => console.log(err))
+    .catch((err) => {
+      console.log(`Ошибка! ${err}`);
+      errorPopup.open();
+    })
     .finally(() => popupToSetAvatar.submitBtn.textContent = 'Создать')
   }
 });
@@ -131,10 +146,15 @@ popupToSetAvatar.setEventListeners();
 const confirmPopup = new ConfirmPopup({
   popupSelector: '#confirm-popup',
   handleConfirmation: (cardId, card) => {
+    confirmPopup.submitBtn.textContent = 'Удаление...';
     api.deleteCard(cardId)
     .then(() => card.remove())
     .then(() => confirmPopup.close())
-    .catch(err => console.log(err))
+    .catch((err) => {
+      console.log(`Ошибка! ${err}`);
+      errorPopup.open();
+    })
+    .finally(() => confirmPopup.submitBtn.textContent = 'Да')
   }
 });
 confirmPopup.setEventListeners();
