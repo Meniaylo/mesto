@@ -14,6 +14,7 @@
     </a>
   </header>
 
+
   <main class="content">
     <section class="profile">
       <div class="profile__card">
@@ -29,13 +30,16 @@
       <button class="profile__add-btn link" type="button" aria-label="Добавить"></button>
     </section>
 
+
     <section class="elements" aria-label="Фотографии">
     </section>
   </main>
 
+
   <footer class="footer">
     <p class="footer__author">&copy;&nbsp;2022 Mesto Russia</p>
   </footer>
+
 
   <section class="popup" id="profile-popup">
     <div class="popup__container">
@@ -114,10 +118,17 @@
   </section>
 
   <section class="popup" id="confirm-popup">
-    <form class="popup__container popup__container_content_confirm">
+    <form class="popup__container">
       <h2 class="popup__title popup__title_content_confirm">Вы уверены?</h2>
       <button class="popup__exit-btn link" type="button" aria-label="Выход"></button>
       <button class="form__submit-btn" type="submit">Да</button>
+    </form>
+  </section>
+
+  <section class="popup" id="error-popup">
+    <form class="popup__container popup__container_content_confirm">
+      <h2 class="popup__title popup__title_content_confirm">Упс... Что-то пошло не так</h2>
+      <button class="form__submit-btn" type="submit">Попробовать заново</button>
     </form>
   </section>
 

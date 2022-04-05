@@ -7,9 +7,9 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import ConfirmPopup from '../components/ConfirmPopup.js';
-import PopupToSetAvatar from '../components/PopupToSetAvatar.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
+import Popup from '../components/Popup.js';
 
 const addBtn = document.querySelector('.profile__add-btn');
 const editBtn = document.querySelector('.profile__edit-btn');
@@ -18,9 +18,10 @@ const profilePopup = document.querySelector('#profile-popup');
 const profileInputName = profilePopup.querySelector('[name="inputName"]');
 const profileInputOccupation = profilePopup.querySelector('[name="inputOccupation"]');
 
-// window.addEventListener('click', (e) => {console.log(e.target)});
 
 const api = new Api(apiInfo);
+
+const errorPopup = new Popup('#error-popup');
 
 
 const userInfo = new UserInfo({
@@ -58,7 +59,10 @@ function handleLikeBtnClick(evt, cardId) {
       this._likesCounter.textContent = res.likes.length;
     })
     .then(() => evt.target.classList.remove('element__like-btn_active'))
-    .catch(err => console.log(err))
+    .catch((err) => {
+      console.log(err);
+      errorPopup.open();
+    })
   }
 }
 
@@ -81,11 +85,13 @@ api.getInitialCards()
 const elementAddPopup = new PopupWithForm({
   popupSelector: '#elements-popup',
   handleFormSubmit: (data) => {
+    elementAddPopup.submitBtn.textContent = 'Сохранение...';
     api.postCard(data)
     .then((res) => {
       cardList.addItem(res, false);
     })
     .catch(err => console.log(err))
+    .finally(() => elementAddPopup.submitBtn.textContent = 'Создать')
     
     elementAddPopup.close();
   }
@@ -96,10 +102,12 @@ elementAddPopup.setEventListeners();
 const profileChangePopup = new PopupWithForm({
   popupSelector: '#profile-popup',
   handleFormSubmit: (data) => {
+    profileChangePopup.submitBtn.textContent = 'Сохранение...';
     api.patchUserInfo(data)
     .then(() => userInfo.setUserInfo(data))
     .then(() => profileChangePopup.close())
     .catch(err => console.log(err))
+    .finally(() => profileChangePopup.submitBtn.textContent = 'Создать')
     }
 });
 profileChangePopup.setEventListeners();
@@ -109,10 +117,12 @@ const popupToSetAvatar = new PopupWithForm({
   popupSelector: '#newAvatar-popup',
   handleFormSubmit: (inputValue) => {
     const url = inputValue.inputAvatarLink;
+    popupToSetAvatar.submitBtn.textContent = 'Сохранение...';
     api.changeAvatar(url)
     .then(() => userInfo.setAvatar(url))
     .then(() => popupToSetAvatar.close())
     .catch(err => console.log(err))
+    .finally(() => popupToSetAvatar.submitBtn.textContent = 'Создать')
   }
 });
 popupToSetAvatar.setEventListeners();
