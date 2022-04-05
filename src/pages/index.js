@@ -39,8 +39,8 @@ function handleCardClick(title, link, alt) {
   newPopupWithImage.open(title, link, alt);
 }
 
-function handleRemoveBtnClick(id) {
-  confirmPopup.open(id);
+function handleRemoveBtnClick(id, element) {
+  confirmPopup.open(id, element);
 }
 
   const cardList = new Section({
@@ -77,15 +77,24 @@ elementAddPopup.setEventListeners();
 const profileChangePopup = new PopupWithForm({
   popupSelector: '#profile-popup',
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
-    api.patchUserInfo(data);
-    profileChangePopup.close();
+    api.patchUserInfo(data)
+    .then(() => userInfo.setUserInfo(data))
+    .then(() => profileChangePopup.close())
+    .catch(err => console.log(err))
     }
-})
+});
 profileChangePopup.setEventListeners();
 
 
-const confirmPopup = new ConfirmPopup('#confirm-popup');
+const confirmPopup = new ConfirmPopup({
+  popupSelector: '#confirm-popup',
+  handleConfirmation: (cardId, card) => {
+    api.deleteCard(cardId)
+    .then(() => card.remove())
+    .then(() => confirmPopup.close())
+    .catch(err => console.log(err))
+  }
+});
 confirmPopup.setEventListeners();
 
 

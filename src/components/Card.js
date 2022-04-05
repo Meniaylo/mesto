@@ -16,6 +16,7 @@ export default class Card {
     this._myId = myId;
   }
 
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)
@@ -24,6 +25,7 @@ export default class Card {
       .cloneNode(true);
     return cardElement;
   }
+
 
   generateCard() {
     this._image = this._element.querySelector('.element__pic');
@@ -40,18 +42,24 @@ export default class Card {
     return this._element;
   }
 
+
+  deleteCard(cardId) {
+    if (cardId === this._id) {
+      this._element.remove();
+    }
+  }
+
   _setEventListeners() {
     this._likeBtn.addEventListener('click', (evt) => {
       evt.target.classList.toggle('element__like-btn_active');
     });
 
     this._removeBtn.addEventListener('click', () => {
-      this._handleRemoveBtnClick(this._id);
+      this._handleRemoveBtnClick(this._id, this._element);
     });
 
     this._image.addEventListener('click', () => {
       this._handleCardClick(this._title, this._imageLink, this._description);
-      console.log(this._ownerId);
     });
   }
 }
