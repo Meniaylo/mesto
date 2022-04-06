@@ -28,6 +28,8 @@ const userInfo = new UserInfo({
   userProfileConfig: userProfileConfig,
   handleAvatarClick: () => {
     popupToSetAvatar.open();
+    formValidators['avatarCtrl'].resetValidation();
+    console.log('done!');
   }});
 
 
