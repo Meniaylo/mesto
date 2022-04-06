@@ -30,12 +30,19 @@ const userInfo = new UserInfo({
     popupToSetAvatar.open();
   }});
 
-api.getUserInfo()
-  .then((data) => {
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([data, cards]) => {
     userInfo.setUserInfoFromServer(data);
+    cardList.renderItems(cards, true);
   })
+  .catch((err) => {
+    console.log(`Ошибка! ${err}`);
+    errorPopup.open();
+  })
+
 userInfo.setEventListeners();
-  
+
 
 function handleCardClick(title, link, alt) {
   newPopupWithImage.open(title, link, alt);
@@ -77,17 +84,6 @@ function handleLikeBtnClick(evt, cardId) {
   }, '.elements')
 
 
-api.getInitialCards()
-  .then((data) => {
-    cardList.renderItems(data, true);
-  })
-  .catch((err) => {
-    console.log(`Ошибка! ${err}`);
-    errorPopup.open();
-  })
-
-
-
 const elementAddPopup = new PopupWithForm({
   popupSelector: '#elements-popup',
   handleFormSubmit: (data) => {
@@ -96,13 +92,12 @@ const elementAddPopup = new PopupWithForm({
     .then((res) => {
       cardList.addItem(res, false);
     })
+    .then(() => elementAddPopup.close())
     .catch((err) => {
       console.log(`Ошибка! ${err}`);
       errorPopup.open();
     })
     .finally(() => elementAddPopup.submitBtn.textContent = 'Создать')
-    
-    elementAddPopup.close();
   }
 })
 elementAddPopup.setEventListeners();
